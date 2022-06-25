@@ -1,16 +1,5 @@
-import { Mode, CompareViewData } from "./compare_view_data";
-import { init_circle_mode } from "./circle_mode";
-
-function load_current_mode(cvd: CompareViewData): void {
-    cvd.current_mode = cvd.next_mode;
-    switch (cvd.current_mode) {
-        case Mode.circle:
-            init_circle_mode(cvd);
-            break;
-        default:
-            throw `unsupported mode: ${cvd.current_mode}`;
-    }
-}
+import { Mode, Task, CompareViewData } from "./compare_view_data";
+import { launch_update } from "./task_solver";
 
 export function load_compare_view(canvas_id: string, start_mode: Mode) {
     let canvas = document.getElementById(canvas_id) as HTMLCanvasElement;
@@ -25,9 +14,10 @@ export function load_compare_view(canvas_id: string, start_mode: Mode) {
         height: canvas.height,
         next_mode: start_mode,
         current_mode: Mode.undefined,
-        load_current_mode: load_current_mode,
+        task_stack: [Task.none],
+        next_update_queued: false,
     };
 
     // start the action
-    load_current_mode(cvd);
+    launch_update(cvd);
 }

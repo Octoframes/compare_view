@@ -3,7 +3,13 @@ export enum Mode {
     vertical,
     horizontal,
     circle,
-}
+};
+
+export enum Task {
+    // don't do anything, just render
+    none,
+    change_mode,
+};
 
 export interface CompareViewData {
     canvas: HTMLCanvasElement;
@@ -19,6 +25,8 @@ export interface CompareViewData {
     // for debugging
     current_mode: Mode;
 
-    // callback circumvents circular imports
-    load_current_mode: (cvd: CompareViewData) => void;
-}
+    // what needs to be done in the next frame
+    task_stack: Task[];
+    // don't can update function when it's already about to be called
+    next_update_queued: boolean;
+};
