@@ -33,8 +33,16 @@ module.exports = (env) => {
             path: path.resolve(__dirname, "public"),
         },
         devServer: {
-            publicPath: "/",
-            contentBase: "./public",
+            static: {
+                // load uncompiled files (e.g. html files) from public dir
+                directory: path.resolve(__dirname, "public"),
+                // where to serve them from
+                publicPath: "/",
+            },
+            devMiddleware: {
+                // where to serve compiled files from
+                publicPath: "/",
+            },
             hot: true,
         },
     };
