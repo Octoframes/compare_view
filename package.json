@@ -1,6 +1,6 @@
 {
-    "name": "splitview",
-    "version": "0.0.1",
+    "name": "compare_view",
+    "version": "0.0.3",
     "description": "Blending Between Two Images",
     "main": "index.js",
     "repository": "https://github.com/zeproc/splitview",
