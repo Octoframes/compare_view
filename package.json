@@ -3,7 +3,7 @@
     "version": "0.0.3",
     "description": "Blending Between Two Images",
     "main": "index.js",
-    "repository": "https://github.com/zeproc/splitview",
+    "repository": "https://github.com/zeproc/compare_view",
     "author": "christopher-besch <mail@chris-besch.com>",
     "license": "MIT",
     "scripts": {
