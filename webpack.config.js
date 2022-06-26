@@ -8,7 +8,7 @@ module.exports = (env) => {
         devtool: env["production"] ? false : "eval-source-map",
         // only entry file, include any imported files
         entry: {
-            index: "./src/index.ts",
+            example_use: "./src/example_use.ts",
         },
         module: {
             rules: [

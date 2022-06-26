@@ -1,5 +1,5 @@
 import { Mode, Task, CompareViewData } from "./compare_view_data";
-import { launch_update } from "./task_solver";
+import { push_task } from "./engine/task_solver";
 
 function load_ctx(canvas_id: string): CanvasRenderingContext2D {
     let canvas = document.getElementById(canvas_id) as HTMLCanvasElement;
@@ -48,12 +48,16 @@ export function load_compare_view(canvas_id: string, start_mode: Mode, image_url
 
             next_mode: start_mode,
             current_mode: Mode.undefined,
-            task_stack: [Task.none],
+            task_stack: [],
             next_update_queued: false,
+
+            render_circle: false,
+            circle_pos: [0, 0],
+            circle_size: 200,
         };
 
         // start the action
-        launch_update(cvd);
+        push_task(cvd, Task.change_mode);
     });
 }
 
