@@ -8,17 +8,18 @@ export enum Mode {
 export enum Task {
     // don't do anything, just render
     none,
+    // switch current_mode to next_mode
     change_mode,
 };
 
 export interface CompareViewData {
+    image_urls: [string, string],
+    images: [HTMLImageElement, HTMLImageElement],
+
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;
     width: number;
     height: number;
-
-    // vertical_position: number;
-    // horizontal_position: number;
 
     // when current mode isn't same as next_mode, terminate current mode and call routing function
     next_mode: Mode;
