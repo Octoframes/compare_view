@@ -15,16 +15,11 @@ export function init_circle_mode(cvd: CompareViewData): void {
         document.documentElement.style.cursor = "default";
         push_task(cvd, Task.remove_circle);
     };
-
-    // // is currently focused?
-    // if (document.activeElement === cvd.canvas)
-    //     push_task(cvd, Task.update_circle);
-    // else
-    //     push_task(cvd, Task.remove_circle);
 }
 
 // unbind callbacks / event handlers
 export function terminate_circle_mode(cvd: CompareViewData): void {
+    cvd.canvas.onmouseenter = null;
     cvd.canvas.onmousemove = null;
     cvd.canvas.onmouseleave = null;
 
