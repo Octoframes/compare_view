@@ -19,7 +19,7 @@ jobs:
         run: yarn install
 
       - name: Build
-        run: yarn build_release
+        run: yarn build_deploy
 
       - name: Deploy Preview to GitHub Pages
         uses: rossjrw/pr-preview-action@v1

@@ -4,7 +4,7 @@ import { delete_task, push_task } from "../engine/task_solver";
 // bind all required callbacks / event handlers
 export function init_circle_mode(cvd: CompareViewData): void {
     cvd.canvas.onmouseenter = () => {
-        document.documentElement.style.cursor = "none";
+        // document.documentElement.style.cursor = "none";
     };
     cvd.canvas.onmousemove = (e) => {
         // update circle position
@@ -29,7 +29,7 @@ export function terminate_circle_mode(cvd: CompareViewData): void {
 export function update_circle(cvd: CompareViewData): boolean {
     cvd.render_circle = true;
 
-    return true;
+    return false;
 }
 
 export function remove_circle(cvd: CompareViewData): boolean {

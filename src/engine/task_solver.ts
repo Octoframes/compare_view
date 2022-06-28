@@ -72,9 +72,11 @@ function update(cvd: CompareViewData, timestamp: number): void {
 // start working on tasks
 function launch_update(cvd: CompareViewData): void {
     if (!cvd.next_update_queued) {
+        console.log("next update");
         cvd.next_update_queued = true;
-        // TODO; set correct timestamp
-        update(cvd, 0);
+        // TODO: set correct timestamp
+        // update(cvd, 0);
+        window.requestAnimationFrame((timestamp) => { update(cvd, timestamp); })
     }
 }
 

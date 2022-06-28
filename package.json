@@ -7,8 +7,8 @@
     "author": "christopher-besch <mail@chris-besch.com>",
     "license": "MIT",
     "scripts": {
-        "serve": "webpack serve",
-        "build_release": "webpack --env=production",
+        "develop": "webpack serve",
+        "build_deploy": "webpack --env=production",
         "build_debug": "webpack --env=development"
     },
     "devDependencies": {
