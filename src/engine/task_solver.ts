@@ -1,6 +1,5 @@
 import { Mode, CompareViewData, Task } from "../compare_view_data";
-import { init_circle_mode, remove_circle, terminate_circle_mode, update_circle } from "../modes/circle_mode";
-import { render } from "./render";
+import { init_circle_mode, remove_circle, terminate_circle_mode, update_circle, render_circle } from "../modes/circle_mode";
 
 function change_mode(cvd: CompareViewData): boolean {
     // terminate old mode
@@ -27,8 +26,21 @@ function change_mode(cvd: CompareViewData): boolean {
     return true;
 }
 
+function render(cvd: CompareViewData, timestamp: number): void {
+    switch (cvd.current_mode) {
+        case Mode.undefined:
+            // nothing to clean up
+            break;
+        case Mode.circle:
+            render_circle(cvd, timestamp);
+            break;
+        default:
+            throw `unsupported mode: ${cvd.current_mode}`;
+    }
+}
+
 function update(cvd: CompareViewData, timestamp: number): void {
-    // replace current stack with new -> handled tasks don't get added again
+    // replace current stack with new -> handled tasks don't get added back
     let new_task_stack: Task[] = [];
     while (cvd.task_stack.length) {
         let current_task = cvd.task_stack.pop() as Task;
@@ -72,10 +84,7 @@ function update(cvd: CompareViewData, timestamp: number): void {
 // start working on tasks
 function launch_update(cvd: CompareViewData): void {
     if (!cvd.next_update_queued) {
-        console.log("next update");
         cvd.next_update_queued = true;
-        // TODO: set correct timestamp
-        // update(cvd, 0);
         window.requestAnimationFrame((timestamp) => { update(cvd, timestamp); })
     }
 }
