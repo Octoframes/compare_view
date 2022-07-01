@@ -3,8 +3,6 @@ import { delete_task, push_task } from "../engine/task_solver";
 
 // bind all required callbacks / event handlers
 export function init_circle_mode(cvd: CompareViewData): void {
-    // cvd.canvas.onmouseenter = () => {
-    // };
     cvd.canvas.onmousemove = (e) => {
         // update circle position
         cvd.circle_pos = [e.offsetX, e.offsetY];
