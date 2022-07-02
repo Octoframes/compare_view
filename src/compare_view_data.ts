@@ -9,16 +9,17 @@ export enum Mode {
 export enum Task {
     // don't do anything, just render once
     none = "none",
+    rotate_imgs = "rotate_imgs",
     // switch current_mode to next_mode
     change_mode = "change_mode",
-    // read current mouse position
+    // update circle position and start rendering
     update_circle = "update_circle",
+    // stop rendering
     remove_circle = "stop_update_circle",
 };
 
 export interface CompareViewData {
-    image_urls: [string, string],
-    images: [HTMLImageElement, HTMLImageElement],
+    images: Image[],
 
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;
@@ -36,7 +37,14 @@ export interface CompareViewData {
     next_update_queued: boolean;
 
     // circle mode //
+    // when render call from different source, circle shouldn't disappear
     render_circle: boolean;
     circle_pos: [number, number];
     circle_size: number;
 };
+
+export interface Image {
+    url: string,
+    element: HTMLImageElement,
+}
+

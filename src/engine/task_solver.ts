@@ -1,5 +1,10 @@
-import { Mode, CompareViewData, Task } from "../compare_view_data";
+import { Mode, CompareViewData, Task, Image } from "../compare_view_data";
 import { init_circle_mode, remove_circle, terminate_circle_mode, update_circle, render_circle } from "../modes/circle_mode";
+
+export function rotate_imgs(cvd: CompareViewData): boolean {
+    cvd.images.unshift(cvd.images.pop() as Image);
+    return true;
+}
 
 function change_mode(cvd: CompareViewData): boolean {
     // terminate old mode
@@ -26,7 +31,7 @@ function change_mode(cvd: CompareViewData): boolean {
     return true;
 }
 
-function render(cvd: CompareViewData, timestamp: number): void {
+function render_dispatch(cvd: CompareViewData, timestamp: number): void {
     switch (cvd.current_mode) {
         case Mode.undefined:
             // nothing to clean up
@@ -54,6 +59,9 @@ function update(cvd: CompareViewData, timestamp: number): void {
             case Task.change_mode:
                 handled = change_mode(cvd);
                 break;
+            case Task.rotate_imgs:
+                handled = rotate_imgs(cvd);
+                break;
             case Task.update_circle:
                 handled = update_circle(cvd);
                 break;
@@ -69,7 +77,7 @@ function update(cvd: CompareViewData, timestamp: number): void {
     }
     cvd.task_stack = new_task_stack;
 
-    render(cvd, timestamp);
+    render_dispatch(cvd, timestamp);
 
     // only call again when there's something left to do
     if (cvd.task_stack.length) {
