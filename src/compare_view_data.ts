@@ -18,8 +18,16 @@ export enum Task {
     remove_circle = "stop_update_circle",
 };
 
+export interface Image {
+    url: string,
+    element: HTMLImageElement,
+    label: string,
+}
+
 export interface CompareViewData {
     images: Image[],
+    // number of images doesn't change
+    images_len: number,
 
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;
@@ -42,9 +50,4 @@ export interface CompareViewData {
     circle_pos: [number, number];
     circle_size: number;
 };
-
-export interface Image {
-    url: string,
-    element: HTMLImageElement,
-}
 

@@ -20,6 +20,7 @@ function load_images(image_urls: string[], callback: (images: Image[]) => void):
         let image: Image = ({
             url: image_urls[i] as string,
             element: document.createElement("img"),
+            label: `${i}`,
         });
         images.push(image)
 
@@ -34,11 +35,12 @@ function load_images(image_urls: string[], callback: (images: Image[]) => void):
 }
 
 // entry point
-export function load_compare_view(canvas_id: string, start_mode: Mode, image_urls: [string, string]): void {
+export function load_compare_view(canvas_id: string, start_mode: Mode, image_urls: string[]): void {
     let ctx = load_ctx(canvas_id);
     load_images(image_urls, (images) => {
         let cvd: CompareViewData = {
             images: images,
+            images_len: images.length,
 
             canvas: ctx.canvas,
             ctx: ctx,

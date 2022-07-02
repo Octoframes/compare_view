@@ -1,4 +1,4 @@
-import { CompareViewData, Task } from "../compare_view_data";
+import { CompareViewData, Image, Task } from "../compare_view_data";
 import { delete_task, push_task } from "../engine/task_solver";
 
 // bind all required callbacks / event handlers
@@ -47,6 +47,18 @@ export function remove_circle(cvd: CompareViewData): boolean {
     return true;
 }
 
+function render_clipped_img(cvd: CompareViewData, image_idx: number, start_angle: number, end_angle: number): void {
+    cvd.ctx.beginPath();
+    cvd.ctx.arc(cvd.circle_pos[0], cvd.circle_pos[1], cvd.circle_size, start_angle, end_angle);
+    cvd.ctx.lineTo(cvd.circle_pos[0], cvd.circle_pos[1]);
+    cvd.ctx.closePath();
+
+    // save to remove clip later on
+    cvd.ctx.save();
+    cvd.ctx.clip();
+    cvd.ctx.drawImage(cvd.images[image_idx]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
+    cvd.ctx.restore();
+}
 
 export function render_circle(cvd: CompareViewData, timestamp: number): void {
     if (cvd.render_circle) {
@@ -55,14 +67,11 @@ export function render_circle(cvd: CompareViewData, timestamp: number): void {
         // TODO: cvd.images[0]?.element as HTMLImageElement what the hell?
         cvd.ctx.drawImage(cvd.images[0]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
 
-        cvd.ctx.beginPath();
-        cvd.ctx.arc(cvd.circle_pos[0], cvd.circle_pos[1], cvd.circle_size, 0, Math.PI * 2);
-        cvd.ctx.closePath();
-        cvd.ctx.save();
-        cvd.ctx.clip();
-
-        cvd.ctx.drawImage(cvd.images[1]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
-        cvd.ctx.restore();
+        for (let i = 1; i < cvd.images_len; ++i) {
+            let start_angle = (i - 1) * Math.PI * 2 / (cvd.images_len - 1);
+            let end_angle = i * Math.PI * 2 / (cvd.images_len - 1);
+            render_clipped_img(cvd, i, start_angle, end_angle);
+        }
     }
     else {
         cvd.ctx.drawImage(cvd.images[0]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
