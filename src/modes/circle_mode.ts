@@ -56,6 +56,8 @@ function render_clipped_img(cvd: CompareViewData, image_idx: number, start_angle
     // save to remove clip later on
     cvd.ctx.save();
     cvd.ctx.clip();
+    // transparent -> white
+    // cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
     cvd.ctx.drawImage(cvd.images[image_idx]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
     cvd.ctx.restore();
 }
@@ -74,6 +76,7 @@ export function render_circle(cvd: CompareViewData, timestamp: number): void {
         }
     }
     else {
+        cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
         cvd.ctx.drawImage(cvd.images[0]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
     }
 }
