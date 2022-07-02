@@ -1,4 +1,4 @@
-import { CompareViewData, Image, Task } from "../compare_view_data";
+import { CompareViewData, Task } from "../compare_view_data";
 import { delete_task, push_task } from "../engine/task_solver";
 
 // bind all required callbacks / event handlers

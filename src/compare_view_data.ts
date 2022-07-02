@@ -36,7 +36,6 @@ export interface CompareViewData {
 
     // when current mode isn't same as next_mode, terminate current mode and call routing function
     next_mode: Mode;
-    // for debugging
     current_mode: Mode;
 
     // what needs to be done in the next frame
