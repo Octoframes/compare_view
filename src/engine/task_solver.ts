@@ -1,5 +1,6 @@
 import { Mode, CompareViewData, Task, Image } from "../compare_view_data";
 import { init_circle_mode, remove_circle, terminate_circle_mode, update_circle, render_circle } from "../modes/circle_mode";
+import { init_horizontal_mode, terminate_horizontal_mode } from "../modes/horizontal_mode";
 
 export function rotate_imgs(cvd: CompareViewData): boolean {
     cvd.images.unshift(cvd.images.pop() as Image);
@@ -15,6 +16,9 @@ function change_mode(cvd: CompareViewData): boolean {
         case Mode.circle:
             terminate_circle_mode(cvd);
             break;
+        case Mode.horizontal:
+            terminate_horizontal_mode(cvd);
+            break;
         default:
             throw `unsupported mode: ${cvd.current_mode}`;
     }
@@ -22,6 +26,9 @@ function change_mode(cvd: CompareViewData): boolean {
     switch (cvd.next_mode) {
         case Mode.circle:
             init_circle_mode(cvd);
+            break;
+        case Mode.horizontal:
+            init_horizontal_mode(cvd);
             break;
         default:
             throw `unsupported mode: ${cvd.current_mode}`;

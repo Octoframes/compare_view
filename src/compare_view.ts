@@ -1,5 +1,6 @@
 import { Mode, Task, CompareViewData, Image } from "./compare_view_data";
 import { push_task } from "./engine/task_solver";
+import { load_control_data } from "./controls";
 
 function load_ctx(canvas_id: string): CanvasRenderingContext2D {
     let canvas = document.getElementById(canvas_id) as HTMLCanvasElement;
@@ -35,7 +36,7 @@ function load_images(image_urls: string[], callback: (images: Image[]) => void):
 }
 
 // entry point
-export function load_compare_view(canvas_id: string, start_mode: Mode, image_urls: string[]): void {
+export function load_compare_view(canvas_id: string, controls_id: string, key: string, start_mode: Mode, image_urls: string[]): void {
     let ctx = load_ctx(canvas_id);
     load_images(image_urls, (images) => {
         let cvd: CompareViewData = {
@@ -46,6 +47,8 @@ export function load_compare_view(canvas_id: string, start_mode: Mode, image_url
             ctx: ctx,
             width: ctx.canvas.width,
             height: ctx.canvas.height,
+
+            control_data: load_control_data(controls_id, key),
 
             next_mode: start_mode,
             current_mode: Mode.undefined,

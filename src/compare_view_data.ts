@@ -1,8 +1,8 @@
 // TODO: don't use strings for production maybe?
 export enum Mode {
     undefined = "undefined",
-    vertical = "vertical",
     horizontal = "horizontal",
+    vertical = "vertical",
     circle = "circle",
 };
 
@@ -24,6 +24,11 @@ export interface Image {
     label: string,
 }
 
+export interface ControlData {
+    circle_button: HTMLInputElement,
+    horizontal_button: HTMLInputElement,
+}
+
 export interface CompareViewData {
     images: Image[],
     // number of images doesn't change
@@ -33,6 +38,8 @@ export interface CompareViewData {
     ctx: CanvasRenderingContext2D;
     width: number;
     height: number;
+
+    control_data: ControlData;
 
     // when current mode isn't same as next_mode, terminate current mode and call routing function
     next_mode: Mode;
