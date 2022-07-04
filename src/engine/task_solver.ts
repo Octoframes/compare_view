@@ -1,6 +1,7 @@
 import { Mode, CompareViewData, Task, Image } from "../compare_view_data";
+import { reload_checkboxes } from "../controls";
 import { init_circle_mode, remove_circle, terminate_circle_mode, update_circle, render_circle } from "../modes/circle_mode";
-import { init_horizontal_mode, terminate_horizontal_mode } from "../modes/horizontal_mode";
+import { init_horizontal_mode, render_horizontal, terminate_horizontal_mode, update_horizontal } from "../modes/horizontal_mode";
 
 export function rotate_imgs(cvd: CompareViewData): boolean {
     cvd.images.unshift(cvd.images.pop() as Image);
@@ -34,6 +35,7 @@ function change_mode(cvd: CompareViewData): boolean {
             throw `unsupported mode: ${cvd.current_mode}`;
     }
     cvd.current_mode = cvd.next_mode;
+    reload_checkboxes(cvd);
 
     return true;
 }
@@ -45,6 +47,9 @@ function render_dispatch(cvd: CompareViewData, timestamp: number): void {
             break;
         case Mode.circle:
             render_circle(cvd, timestamp);
+            break;
+        case Mode.horizontal:
+            render_horizontal(cvd, timestamp);
             break;
         default:
             throw `unsupported mode: ${cvd.current_mode}`;
@@ -74,6 +79,9 @@ function update(cvd: CompareViewData, timestamp: number): void {
                 break;
             case Task.remove_circle:
                 handled = remove_circle(cvd);
+                break;
+            case Task.update_horizontal:
+                handled = update_horizontal(cvd);
                 break;
             default:
                 throw `unknown task: ${current_task}`

@@ -1,6 +1,6 @@
 import { Mode, Task, CompareViewData, Image } from "./compare_view_data";
 import { push_task } from "./engine/task_solver";
-import { load_control_data } from "./controls";
+import { create_controls, attach_control_events } from "./controls";
 
 function load_ctx(canvas_id: string): CanvasRenderingContext2D {
     let canvas = document.getElementById(canvas_id) as HTMLCanvasElement;
@@ -48,7 +48,7 @@ export function load_compare_view(canvas_id: string, controls_id: string, key: s
             width: ctx.canvas.width,
             height: ctx.canvas.height,
 
-            control_data: load_control_data(controls_id, key),
+            ctrl_data: create_controls(controls_id, key),
 
             next_mode: start_mode,
             current_mode: Mode.undefined,
@@ -58,7 +58,10 @@ export function load_compare_view(canvas_id: string, controls_id: string, key: s
             render_circle: false,
             circle_pos: [0, 0],
             circle_size: 200,
+
+            horizontal_pos: 0,
         };
+        attach_control_events(cvd);
 
         // start the action
         push_task(cvd, Task.change_mode);

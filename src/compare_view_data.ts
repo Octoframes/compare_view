@@ -16,6 +16,8 @@ export enum Task {
     update_circle = "update_circle",
     // stop rendering
     remove_circle = "stop_update_circle",
+
+    update_horizontal = "update_horizontal",
 };
 
 export interface Image {
@@ -25,8 +27,11 @@ export interface Image {
 }
 
 export interface ControlData {
+    controls_parent: HTMLElement,
     circle_button: HTMLInputElement,
     horizontal_button: HTMLInputElement,
+
+    rotate_imgs_button: HTMLButtonElement,
 }
 
 export interface CompareViewData {
@@ -39,7 +44,7 @@ export interface CompareViewData {
     width: number;
     height: number;
 
-    control_data: ControlData;
+    ctrl_data: ControlData;
 
     // when current mode isn't same as next_mode, terminate current mode and call routing function
     next_mode: Mode;
@@ -55,5 +60,8 @@ export interface CompareViewData {
     render_circle: boolean;
     circle_pos: [number, number];
     circle_size: number;
+
+    // horizontal mode //
+    horizontal_pos: number;
 };
 
