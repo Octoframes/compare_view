@@ -18,6 +18,8 @@ export enum Task {
     remove_circle = "stop_update_circle",
 
     update_horizontal = "update_horizontal",
+    // mouse button isn't held down any more
+    stop_horizontal = "stop_horizontal",
 };
 
 export interface Image {
@@ -46,6 +48,9 @@ export interface CompareViewData {
 
     ctrl_data: ControlData;
 
+    // kept updated when necessary
+    mouse_pos: [number, number];
+
     // when current mode isn't same as next_mode, terminate current mode and call routing function
     next_mode: Mode;
     current_mode: Mode;
@@ -58,7 +63,6 @@ export interface CompareViewData {
     // circle mode //
     // when render call from different source, circle shouldn't disappear
     render_circle: boolean;
-    circle_pos: [number, number];
     circle_size: number;
 
     // horizontal mode //

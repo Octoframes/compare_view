@@ -55,8 +55,9 @@ export function load_compare_view(canvas_id: string, controls_id: string, key: s
             task_stack: [],
             next_update_queued: false,
 
+            mouse_pos: [0, 0],
+
             render_circle: false,
-            circle_pos: [0, 0],
             circle_size: 200,
 
             horizontal_pos: 0,

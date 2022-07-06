@@ -4,28 +4,25 @@ import { delete_task, push_task } from "../engine/task_solver";
 // bind all required callbacks / event handlers
 export function init_circle_mode(cvd: CompareViewData): void {
     cvd.canvas.onmousemove = (e) => {
-        // update circle position
-        cvd.circle_pos = [e.offsetX, e.offsetY];
+        cvd.mouse_pos = [e.offsetX, e.offsetY];
         // ensure rendering always starts
         push_task(cvd, Task.update_circle);
     };
     cvd.canvas.onmouseleave = () => {
         push_task(cvd, Task.remove_circle);
     };
-    cvd.canvas.onclick = () => {
+    cvd.canvas.onmousedown = () => {
         push_task(cvd, Task.rotate_imgs);
     }
 
     if (cvd.canvas.matches(":hover"))
         push_task(cvd, Task.update_circle);
 }
-
-// unbind callbacks / event handlers
 export function terminate_circle_mode(cvd: CompareViewData): void {
     cvd.canvas.onmouseenter = null;
     cvd.canvas.onmousemove = null;
     cvd.canvas.onmouseleave = null;
-    cvd.canvas.onclick = null;
+    cvd.canvas.onmousedown = null;
 
     document.documentElement.style.cursor = "default";
 
@@ -49,8 +46,8 @@ export function remove_circle(cvd: CompareViewData): boolean {
 
 function render_clipped_img(cvd: CompareViewData, image_idx: number, start_angle: number, end_angle: number): void {
     cvd.ctx.beginPath();
-    cvd.ctx.arc(cvd.circle_pos[0], cvd.circle_pos[1], cvd.circle_size, start_angle, end_angle);
-    cvd.ctx.lineTo(cvd.circle_pos[0], cvd.circle_pos[1]);
+    cvd.ctx.arc(cvd.mouse_pos[0], cvd.mouse_pos[1], cvd.circle_size, start_angle, end_angle);
+    cvd.ctx.lineTo(cvd.mouse_pos[0], cvd.mouse_pos[1]);
     cvd.ctx.closePath();
 
     // save to remove clip later on
