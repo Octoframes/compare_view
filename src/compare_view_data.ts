@@ -1,7 +1,7 @@
 // TODO: don't use strings for production maybe?
 export enum Mode {
     undefined = "undefined",
-    horizontal = "horizontal",
+    slider = "slider",
     vertical = "vertical",
     circle = "circle",
 };
@@ -17,9 +17,12 @@ export enum Task {
     // stop rendering
     remove_circle = "stop_update_circle",
 
-    update_horizontal = "update_horizontal",
+    // mouse has been clicked
+    start_slider_move = "start_slider_move",
+    instant_slide = "instant_slide",
+    update_slider = "update_slider",
     // mouse button isn't held down any more
-    stop_horizontal = "stop_horizontal",
+    stop_slider = "stop_slider",
 };
 
 export interface Image {
@@ -31,7 +34,7 @@ export interface Image {
 export interface ControlData {
     controls_parent: HTMLElement,
     circle_button: HTMLInputElement,
-    horizontal_button: HTMLInputElement,
+    slider_button: HTMLInputElement,
 
     rotate_imgs_button: HTMLButtonElement,
 }
@@ -65,7 +68,15 @@ export interface CompareViewData {
     render_circle: boolean;
     circle_size: number;
 
-    // horizontal mode //
-    horizontal_pos: number;
+    // slider mode //
+    // time slider takes to reach target in ms
+    slider_time: number;
+    slider_pos: number;
+
+    // for animation
+    start_timestamp: number;
+    target_timestamp: number;
+    start_pos: number;
+    target_pos: number;
 };
 

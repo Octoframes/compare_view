@@ -1,7 +1,7 @@
 import { Mode, CompareViewData, Task, Image } from "../compare_view_data";
 import { reload_checkboxes } from "../controls";
 import { init_circle_mode, remove_circle, terminate_circle_mode, update_circle, render_circle } from "../modes/circle_mode";
-import { init_horizontal_mode, render_horizontal, stop_horizontal, terminate_horizontal_mode, update_horizontal } from "../modes/horizontal_mode";
+import { init_slider_mode, instant_slide, render_slider, start_slider_move, stop_slider, terminate_slider_mode, update_slider } from "../modes/slider_mode";
 
 export function rotate_imgs(cvd: CompareViewData): boolean {
     cvd.images.unshift(cvd.images.pop() as Image);
@@ -17,8 +17,8 @@ function change_mode(cvd: CompareViewData): boolean {
         case Mode.circle:
             terminate_circle_mode(cvd);
             break;
-        case Mode.horizontal:
-            terminate_horizontal_mode(cvd);
+        case Mode.slider:
+            terminate_slider_mode(cvd);
             break;
         default:
             throw `unsupported mode: ${cvd.current_mode}`;
@@ -28,8 +28,8 @@ function change_mode(cvd: CompareViewData): boolean {
         case Mode.circle:
             init_circle_mode(cvd);
             break;
-        case Mode.horizontal:
-            init_horizontal_mode(cvd);
+        case Mode.slider:
+            init_slider_mode(cvd);
             break;
         default:
             throw `unsupported mode: ${cvd.current_mode}`;
@@ -48,8 +48,8 @@ function render_dispatch(cvd: CompareViewData, timestamp: number): void {
         case Mode.circle:
             render_circle(cvd, timestamp);
             break;
-        case Mode.horizontal:
-            render_horizontal(cvd, timestamp);
+        case Mode.slider:
+            render_slider(cvd, timestamp);
             break;
         default:
             throw `unsupported mode: ${cvd.current_mode}`;
@@ -80,11 +80,17 @@ function update(cvd: CompareViewData, timestamp: number): void {
             case Task.remove_circle:
                 handled = remove_circle(cvd);
                 break;
-            case Task.update_horizontal:
-                handled = update_horizontal(cvd);
+            case Task.start_slider_move:
+                handled = start_slider_move(cvd, timestamp);
                 break;
-            case Task.stop_horizontal:
-                handled = stop_horizontal(cvd);
+            case Task.instant_slide:
+                handled = instant_slide(cvd);
+                break;
+            case Task.update_slider:
+                handled = update_slider(cvd);
+                break;
+            case Task.stop_slider:
+                handled = stop_slider(cvd);
                 break;
             default:
                 throw `unknown task: ${current_task}`
@@ -115,6 +121,7 @@ function launch_update(cvd: CompareViewData): void {
     }
 }
 
+// TODO: use different data structure
 export function delete_task(cvd: CompareViewData, task: Task): void {
     // there can only be one occurrence of each task type -> no loop required
     let idx = cvd.task_stack.indexOf(task);
@@ -129,5 +136,9 @@ export function push_task(cvd: CompareViewData, task: Task): void {
     cvd.task_stack.push(task);
     // ensure that the pushed task is executed ASAP
     launch_update(cvd);
+}
+
+export function contains_task(cvd: CompareViewData, task: Task): boolean {
+    return cvd.task_stack.indexOf(task) != -1;
 }
 

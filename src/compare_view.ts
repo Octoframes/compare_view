@@ -60,7 +60,13 @@ export function load_compare_view(canvas_id: string, controls_id: string, key: s
             render_circle: false,
             circle_size: 200,
 
-            horizontal_pos: 0,
+            slider_pos: 100,
+            slider_time: 500,
+
+            start_timestamp: 0,
+            target_timestamp: 0,
+            start_pos: 0,
+            target_pos: 0,
         };
         attach_control_events(cvd);
 

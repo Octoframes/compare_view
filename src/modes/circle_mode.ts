@@ -29,6 +29,7 @@ export function terminate_circle_mode(cvd: CompareViewData): void {
     push_task(cvd, Task.remove_circle);
 }
 
+// tasks //
 export function update_circle(cvd: CompareViewData): boolean {
     cvd.render_circle = true;
     document.documentElement.style.cursor = "none";
@@ -38,7 +39,6 @@ export function update_circle(cvd: CompareViewData): boolean {
 
 export function remove_circle(cvd: CompareViewData): boolean {
     delete_task(cvd, Task.update_circle);
-    cvd.render_circle = false;
     document.documentElement.style.cursor = "default";
 
     return true;
@@ -76,5 +76,7 @@ export function render_circle(cvd: CompareViewData, timestamp: number): void {
         cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
         cvd.ctx.drawImage(cvd.images[0]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
     }
+    // next render has to be reactivated
+    cvd.render_circle = false;
 }
 
