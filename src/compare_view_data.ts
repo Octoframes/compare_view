@@ -1,7 +1,7 @@
 // TODO: don't use strings for production maybe?
 export enum Mode {
     undefined = "undefined",
-    slider = "slider",
+    horizontal = "horizontal",
     vertical = "vertical",
     circle = "circle",
 };
@@ -34,7 +34,8 @@ export interface Image {
 export interface ControlData {
     controls_parent: HTMLElement,
     circle_button: HTMLInputElement,
-    slider_button: HTMLInputElement,
+    horizontal_button: HTMLInputElement,
+    vertical_button: HTMLInputElement,
 
     rotate_imgs_button: HTMLButtonElement,
 }
@@ -71,6 +72,7 @@ export interface CompareViewData {
     // slider mode //
     // time slider takes to reach target in ms
     slider_time: number;
+    // relative slider position in image (e.g. 0.5 -> in middle of frame)
     slider_pos: number;
 
     // for animation

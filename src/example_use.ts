@@ -1,7 +1,7 @@
 import { load_compare_view } from "./compare_view";
 import { Mode } from "./compare_view_data";
 
-load_compare_view("canvas", "controls", "test_key", Mode.slider, [
+load_compare_view("canvas", "controls", "test_key", Mode.horizontal, [
     "./marking_images/1.png",
     "./marking_images/2.png",
     // "./marking_images/3.png",

@@ -17,7 +17,10 @@ function change_mode(cvd: CompareViewData): boolean {
         case Mode.circle:
             terminate_circle_mode(cvd);
             break;
-        case Mode.slider:
+        case Mode.horizontal:
+            terminate_slider_mode(cvd);
+            break;
+        case Mode.vertical:
             terminate_slider_mode(cvd);
             break;
         default:
@@ -28,7 +31,10 @@ function change_mode(cvd: CompareViewData): boolean {
         case Mode.circle:
             init_circle_mode(cvd);
             break;
-        case Mode.slider:
+        case Mode.horizontal:
+            init_slider_mode(cvd);
+            break;
+        case Mode.vertical:
             init_slider_mode(cvd);
             break;
         default:
@@ -48,7 +54,10 @@ function render_dispatch(cvd: CompareViewData, timestamp: number): void {
         case Mode.circle:
             render_circle(cvd, timestamp);
             break;
-        case Mode.slider:
+        case Mode.horizontal:
+            render_slider(cvd, timestamp);
+            break;
+        case Mode.vertical:
             render_slider(cvd, timestamp);
             break;
         default:

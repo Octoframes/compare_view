@@ -31,14 +31,16 @@ export function create_controls(controls_id: string, key: string): ControlData {
     return {
         controls_parent: controls,
         circle_button: create_checkbox(`${key}circle_button`, "Circle", controls),
-        slider_button: create_checkbox(`${key}slider_button`, "Slider", controls),
+        horizontal_button: create_checkbox(`${key}horizontal_button`, "Horizontal", controls),
+        vertical_button: create_checkbox(`${key}vertical_button`, "Vertical", controls),
         rotate_imgs_button: create_button("Rotate Images", controls),
     }
 }
 
 function disable_checkboxes(ctrl_data: ControlData): void {
     ctrl_data.circle_button.checked = false;
-    ctrl_data.slider_button.checked = false;
+    ctrl_data.horizontal_button.checked = false;
+    ctrl_data.vertical_button.checked = false;
 }
 
 export function reload_checkboxes(cvd: CompareViewData): void {
@@ -47,8 +49,11 @@ export function reload_checkboxes(cvd: CompareViewData): void {
         case Mode.circle:
             cvd.ctrl_data.circle_button.checked = true;
             break;
-        case Mode.slider:
-            cvd.ctrl_data.slider_button.checked = true;
+        case Mode.horizontal:
+            cvd.ctrl_data.horizontal_button.checked = true;
+            break;
+        case Mode.vertical:
+            cvd.ctrl_data.vertical_button.checked = true;
             break;
         default:
             throw `unsupported mode: ${cvd.current_mode}`;
@@ -70,7 +75,8 @@ function attach_mode_change_button(cvd: CompareViewData, button: HTMLInputElemen
 
 export function attach_control_events(cvd: CompareViewData): void {
     attach_mode_change_button(cvd, cvd.ctrl_data.circle_button, Mode.circle);
-    attach_mode_change_button(cvd, cvd.ctrl_data.slider_button, Mode.slider);
+    attach_mode_change_button(cvd, cvd.ctrl_data.horizontal_button, Mode.horizontal);
+    attach_mode_change_button(cvd, cvd.ctrl_data.vertical_button, Mode.vertical);
     cvd.ctrl_data.rotate_imgs_button.onclick = () => {
         push_task(cvd, Task.rotate_imgs);
     };
