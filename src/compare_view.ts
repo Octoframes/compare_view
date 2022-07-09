@@ -37,6 +37,10 @@ function load_images(image_urls: string[], callback: (images: Image[]) => void):
 
 // entry point
 export function load_compare_view(canvas_id: string, controls_id: string, key: string, start_mode: Mode, image_urls: string[]): void {
+    function ease_in_out_cubic(x: number): number {
+        return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+    }
+
     let ctx = load_ctx(canvas_id);
     load_images(image_urls, (images) => {
         let cvd: CompareViewData = {
@@ -56,12 +60,14 @@ export function load_compare_view(canvas_id: string, controls_id: string, key: s
             next_update_queued: false,
 
             mouse_pos: [0, 0],
+            held_down: false,
 
             render_circle: false,
-            circle_size: 200,
+            circle_size: 100,
 
-            slider_pos: 100,
-            slider_time: 500,
+            slider_pos: 0.5,
+            slider_time: 400,
+            rate_function: ease_in_out_cubic,
 
             start_timestamp: 0,
             target_timestamp: 0,

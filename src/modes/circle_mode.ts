@@ -1,10 +1,11 @@
 import { CompareViewData, Task } from "../compare_view_data";
 import { delete_task, push_task } from "../engine/task_solver";
+import { set_mouse_pos } from "../helper";
 
 // bind all required callbacks / event handlers
 export function init_circle_mode(cvd: CompareViewData): void {
     cvd.canvas.onmousemove = (e) => {
-        cvd.mouse_pos = [e.offsetX, e.offsetY];
+        set_mouse_pos(cvd, e);
         // ensure rendering always starts
         push_task(cvd, Task.update_circle);
     };
@@ -59,7 +60,7 @@ function render_clipped_img(cvd: CompareViewData, image_idx: number, start_angle
     cvd.ctx.restore();
 }
 
-export function render_circle(cvd: CompareViewData, timestamp: number): void {
+export function render_circle(cvd: CompareViewData): void {
     if (cvd.render_circle) {
         cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
 

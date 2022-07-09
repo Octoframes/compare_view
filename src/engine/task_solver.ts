@@ -1,7 +1,7 @@
 import { Mode, CompareViewData, Task, Image } from "../compare_view_data";
 import { reload_checkboxes } from "../controls";
 import { init_circle_mode, remove_circle, terminate_circle_mode, update_circle, render_circle } from "../modes/circle_mode";
-import { init_slider_mode, instant_slide, render_slider, start_slider_move, stop_slider, terminate_slider_mode, update_slider } from "../modes/slider_mode";
+import { init_slider_mode, instant_slide, render_slider, start_slider_move, terminate_slider_mode, update_slider } from "../modes/slider_mode";
 
 export function rotate_imgs(cvd: CompareViewData): boolean {
     cvd.images.unshift(cvd.images.pop() as Image);
@@ -52,13 +52,13 @@ function render_dispatch(cvd: CompareViewData, timestamp: number): void {
             // nothing to clean up
             break;
         case Mode.circle:
-            render_circle(cvd, timestamp);
+            render_circle(cvd);
             break;
         case Mode.horizontal:
-            render_slider(cvd, timestamp);
+            render_slider(cvd);
             break;
         case Mode.vertical:
-            render_slider(cvd, timestamp);
+            render_slider(cvd);
             break;
         default:
             throw `unsupported mode: ${cvd.current_mode}`;
@@ -92,14 +92,11 @@ function update(cvd: CompareViewData, timestamp: number): void {
             case Task.start_slider_move:
                 handled = start_slider_move(cvd, timestamp);
                 break;
-            case Task.instant_slide:
-                handled = instant_slide(cvd);
+            case Task.possible_instant_slide:
+                handled = instant_slide(cvd, timestamp);
                 break;
             case Task.update_slider:
-                handled = update_slider(cvd);
-                break;
-            case Task.stop_slider:
-                handled = stop_slider(cvd);
+                handled = update_slider(cvd, timestamp);
                 break;
             default:
                 throw `unknown task: ${current_task}`

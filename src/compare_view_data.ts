@@ -19,10 +19,8 @@ export enum Task {
 
     // mouse has been clicked
     start_slider_move = "start_slider_move",
-    instant_slide = "instant_slide",
+    possible_instant_slide = "instant_slide",
     update_slider = "update_slider",
-    // mouse button isn't held down any more
-    stop_slider = "stop_slider",
 };
 
 export interface Image {
@@ -54,6 +52,7 @@ export interface CompareViewData {
 
     // kept updated when necessary
     mouse_pos: [number, number];
+    held_down: boolean;
 
     // when current mode isn't same as next_mode, terminate current mode and call routing function
     next_mode: Mode;
@@ -70,10 +69,12 @@ export interface CompareViewData {
     circle_size: number;
 
     // slider mode //
-    // time slider takes to reach target in ms
-    slider_time: number;
     // relative slider position in image (e.g. 0.5 -> in middle of frame)
     slider_pos: number;
+    // time slider takes to reach target in ms
+    slider_time: number;
+    // see: https://easings.net/
+    rate_function: (x: number) => number;
 
     // for animation
     start_timestamp: number;
