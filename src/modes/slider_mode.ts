@@ -7,23 +7,20 @@ export function init_slider_mode(cvd: CompareViewData): void {
         cvd.held_down = true;
         push_task(cvd, Task.start_slider_move);
     }
-    cvd.canvas.onmouseup = () => {
-        cvd.held_down = false;
-    }
-    // ensure loss of control
-    cvd.canvas.onmouseleave = () => {
-        cvd.held_down = false;
-    }
     cvd.canvas.onmousemove = (e) => {
         set_mouse_pos(cvd, e);
         push_task(cvd, Task.possible_instant_slide);
+    }
+    // keep slider active when hovering over edge
+    document.onmouseup = () => {
+        cvd.held_down = false;
     }
 }
 export function terminate_slider_mode(cvd: CompareViewData): void {
     cvd.canvas.onmousedown = null;
     cvd.canvas.onmouseup = null;
-    cvd.canvas.onmouseleave = null;
     cvd.canvas.onmousemove = null;
+    document.onmouseup = null;
 }
 
 // tasks //
@@ -75,7 +72,6 @@ export function update_slider(cvd: CompareViewData, timestamp: number): boolean 
 }
 
 export function render_slider(cvd: CompareViewData): void {
-    console.log("render");
     cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
 
     cvd.ctx.drawImage(cvd.images[0]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);

@@ -8,7 +8,7 @@ module.exports = (env) => {
         devtool: env["production"] ? false : "eval-source-map",
         // only entry file, include any imported files
         entry: {
-            example_use: "./src/example_use.ts",
+            compare_view: "./src/compare_view.ts",
         },
         module: {
             rules: [
@@ -31,6 +31,11 @@ module.exports = (env) => {
             filename: "[name].js",
             // need absolute path
             path: path.resolve(__dirname, "public"),
+            // allow browser to access exposed functions
+            library: {
+                name: "compare_view",
+                type: "var",
+            },
         },
         devServer: {
             static: {
