@@ -65,17 +65,29 @@ function render_background_img(cvd: CompareViewData): void {
     cvd.ctx.restore();
 }
 
-function render_clipped_img(cvd: CompareViewData, image_idx: number, start_angle: number, end_angle: number): void {
+// the cake is a lie
+function render_piece_of_cake(cvd: CompareViewData, start_angle: number, end_angle: number): void {
     cvd.ctx.beginPath();
     cvd.ctx.arc(cvd.mouse_pos[0], cvd.mouse_pos[1], cvd.circle_size, start_angle, end_angle);
     cvd.ctx.lineTo(cvd.mouse_pos[0], cvd.mouse_pos[1]);
     cvd.ctx.closePath();
+}
+
+function render_clipped_img(cvd: CompareViewData, image_idx: number, start_angle: number, end_angle: number): void {
+    render_piece_of_cake(cvd, start_angle, end_angle);
 
     // save to remove clip later on
     cvd.ctx.save();
     cvd.ctx.clip();
     cvd.ctx.drawImage(cvd.images[image_idx]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
     cvd.ctx.restore();
+
+    if (cvd.show_circle) {
+        render_piece_of_cake(cvd, start_angle, end_angle);
+        cvd.ctx.strokeStyle = "black";
+        cvd.ctx.lineWidth = 3;
+        cvd.ctx.stroke();
+    }
 }
 
 export function render_circle(cvd: CompareViewData): void {

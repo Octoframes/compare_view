@@ -39,7 +39,7 @@ export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, co
 
             ctrl_data: ctrl_data,
 
-            next_mode: config.start_mode ? config.start_mode : Mode.circle,
+            next_mode: config.start_mode != undefined ? config.start_mode : Mode.circle,
             current_mode: Mode.undefined,
             task_stack: [],
             next_update_queued: false,
@@ -48,13 +48,13 @@ export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, co
             held_down: false,
 
             render_circle: false,
-            circle_size: config.circle_size ? config.circle_size : 100,
-            show_circle: config.show_circle ? config.show_circle : true,
+            circle_size: config.circle_size != undefined ? config.circle_size : 100,
+            show_circle: config.show_circle != undefined ? config.show_circle : true,
 
-            slider_pos: config.start_slider_pos ? config.start_slider_pos : 0.5,
-            slider_time: config.slider_time ? config.slider_time : 400,
-            rate_function: config.rate_function ? config.rate_function : ease_in_out_cubic,
-            show_slider: config.show_slider ? config.show_slider : true,
+            slider_pos: config.start_slider_pos != undefined ? config.start_slider_pos : 0.5,
+            slider_time: config.slider_time != undefined ? config.slider_time : 400,
+            rate_function: config.rate_function != undefined ? config.rate_function : ease_in_out_cubic,
+            show_slider: config.show_slider != undefined ? config.show_slider : true,
 
             start_timestamp: 0,
             start_pos: 0,

@@ -63,6 +63,22 @@ export function update_slider(cvd: CompareViewData, timestamp: number): boolean 
     return cvd.slider_pos == cvd.target_pos;
 }
 
+function render_slider_line(cvd: CompareViewData): void {
+    cvd.ctx.beginPath();
+    if (cvd.current_mode == Mode.horizontal) {
+        cvd.ctx.moveTo(cvd.slider_pos * cvd.width, 0);
+        cvd.ctx.lineTo(cvd.slider_pos * cvd.width, cvd.height);
+    }
+    else {
+        cvd.ctx.moveTo(0, cvd.slider_pos * cvd.height);
+        cvd.ctx.lineTo(cvd.width, cvd.slider_pos * cvd.height);
+    }
+    cvd.ctx.closePath();
+    cvd.ctx.strokeStyle = "black";
+    cvd.ctx.lineWidth = 5;
+    cvd.ctx.stroke();
+}
+
 function render_second_img(cvd: CompareViewData): void {
     cvd.ctx.beginPath();
     if (cvd.current_mode == Mode.horizontal)
@@ -84,6 +100,9 @@ export function render_slider(cvd: CompareViewData): void {
     cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
 
     cvd.ctx.drawImage(cvd.images[0]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
+
+    if (cvd.show_slider)
+        render_slider_line(cvd);
 
     render_second_img(cvd);
 }

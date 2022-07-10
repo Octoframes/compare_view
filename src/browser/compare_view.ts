@@ -14,8 +14,8 @@ export function load(image_urls: string[], canvas_id: string, config: BrowserCon
     load_cvd(
         image_urls,
         load_ctx(canvas_id),
-        config ? config : {},
-        config && config.controls_id ? create_controls(config.controls_id, config.key) : undefined,
+        config != undefined ? config : {},
+        config != undefined && config.controls_id != undefined ? create_controls(config.controls_id, config.key) : undefined,
     )
 }
 
