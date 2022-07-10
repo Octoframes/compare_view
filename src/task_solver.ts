@@ -26,6 +26,7 @@ function change_mode(cvd: CompareViewData): boolean {
         default:
             throw `unsupported mode: ${cvd.current_mode}`;
     }
+    cvd.current_mode = cvd.next_mode;
     // init new mode
     switch (cvd.next_mode) {
         case Mode.circle:
@@ -40,7 +41,6 @@ function change_mode(cvd: CompareViewData): boolean {
         default:
             throw `unsupported mode: ${cvd.current_mode}`;
     }
-    cvd.current_mode = cvd.next_mode;
     reload_checkboxes(cvd);
 
     return true;

@@ -6,21 +6,35 @@ export function init_slider_mode(cvd: CompareViewData): void {
     cvd.canvas.onmousedown = () => {
         cvd.held_down = true;
         push_task(cvd, Task.start_slider_move);
-    }
-    cvd.canvas.onmousemove = (e) => {
-        set_mouse_pos(cvd, e);
-        push_task(cvd, Task.possible_instant_slide);
-    }
+    };
     // keep slider active when hovering over edge
     document.onmouseup = () => {
         cvd.held_down = false;
-    }
+    };
+    cvd.canvas.onmousemove = (e) => {
+        set_mouse_pos(cvd, e);
+        push_task(cvd, Task.possible_instant_slide);
+    };
+    // cursor style
+    if (cvd.current_mode == Mode.horizontal)
+        cvd.canvas.onmouseenter = () => {
+            document.documentElement.style.cursor = "ew-resize";
+        };
+    else
+        cvd.canvas.onmouseenter = () => {
+            document.documentElement.style.cursor = "ns-resize";
+        };
+    cvd.canvas.onmouseleave = () => {
+        document.documentElement.style.cursor = "default";
+    };
 }
 export function terminate_slider_mode(cvd: CompareViewData): void {
     cvd.canvas.onmousedown = null;
+    document.onmouseup = null;
     cvd.canvas.onmouseup = null;
     cvd.canvas.onmousemove = null;
-    document.onmouseup = null;
+    cvd.canvas.onmouseenter = null;
+    cvd.canvas.onmouseleave = null;
 }
 
 // tasks //
