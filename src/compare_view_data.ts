@@ -68,6 +68,7 @@ export interface CompareViewData {
     render_circle: boolean;
     circle_size: number;
     show_circle: boolean;
+    rotate_imgs_on_click: boolean;
 
     // slider mode //
     // relative slider position in image (e.g. 0.5 -> in middle of frame)

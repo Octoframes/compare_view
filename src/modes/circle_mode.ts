@@ -12,9 +12,10 @@ export function init_circle_mode(cvd: CompareViewData): void {
     cvd.canvas.onmouseleave = () => {
         push_task(cvd, Task.remove_circle);
     };
-    cvd.canvas.onmousedown = () => {
-        push_task(cvd, Task.rotate_imgs);
-    }
+    if (cvd.rotate_imgs_on_click)
+        cvd.canvas.onmousedown = () => {
+            push_task(cvd, Task.rotate_imgs);
+        }
 
     if (cvd.canvas.matches(":hover"))
         push_task(cvd, Task.update_circle);
