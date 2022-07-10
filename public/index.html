@@ -15,21 +15,28 @@
         </div>
     </div>
 
-    <script src="./compare_view.js"></script>
+    <script src="./browser_compare_view.js"></script>
     <script>
-        compare_view.load_compare_view("canvas", "controls", "test_key", "horizontal", [
-            "./marking_images/1.png",
-            "./marking_images/2.png",
-            // "./marking_images/3.png",
-            // "./marking_images/4.png",
-            // "./marking_images/5.png",
-            // "./marking_images/6.png",
-            // "./marking_images/7.png",
-            // "./marking_images/8.png",
-            // "./marking_images/9.png",
-            "./marking_images/10.png",
-            // "./marking_images/11.png",
-        ]);
+        compare_view.load(
+            [
+                "./marking_images/1.png",
+                "./marking_images/2.png",
+                // "./marking_images/3.png",
+                // "./marking_images/4.png",
+                // "./marking_images/5.png",
+                // "./marking_images/6.png",
+                // "./marking_images/7.png",
+                // "./marking_images/8.png",
+                // "./marking_images/9.png",
+                "./marking_images/10.png",
+                // "./marking_images/11.png",
+            ],
+            "canvas",
+            {
+                controls_id: "controls",
+                start_mode: "horizontal",
+            }
+        );
     </script>
 </body>
 

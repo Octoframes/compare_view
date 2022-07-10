@@ -8,7 +8,8 @@ module.exports = (env) => {
         devtool: env["production"] ? false : "eval-source-map",
         // only entry file, include any imported files
         entry: {
-            compare_view: "./src/compare_view.ts",
+            browser_compare_view: "./src/browser/compare_view.ts",
+            component_compare_view: "./src/component/compare_view.ts",
         },
         module: {
             rules: [

@@ -1,5 +1,5 @@
 import { CompareViewData, Task } from "../compare_view_data";
-import { delete_task, push_task } from "../engine/task_solver";
+import { delete_task, push_task } from "../task_solver";
 import { set_mouse_pos } from "../helper";
 
 // bind all required callbacks / event handlers

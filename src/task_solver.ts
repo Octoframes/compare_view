@@ -1,9 +1,9 @@
-import { Mode, CompareViewData, Task, Image } from "../compare_view_data";
-import { reload_checkboxes } from "../controls";
-import { init_circle_mode, remove_circle, terminate_circle_mode, update_circle, render_circle } from "../modes/circle_mode";
-import { init_slider_mode, instant_slide, render_slider, start_slider_move, terminate_slider_mode, update_slider } from "../modes/slider_mode";
+import { Mode, CompareViewData, Task, Image } from "./compare_view_data";
+import { reload_checkboxes } from "./controls";
+import { init_circle_mode, remove_circle, terminate_circle_mode, update_circle, render_circle } from "./modes/circle_mode";
+import { init_slider_mode, instant_slide, render_slider, start_slider_move, terminate_slider_mode, update_slider } from "./modes/slider_mode";
 
-export function rotate_imgs(cvd: CompareViewData): boolean {
+function rotate_imgs(cvd: CompareViewData): boolean {
     cvd.images.unshift(cvd.images.pop() as Image);
     return true;
 }

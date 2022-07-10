@@ -1,5 +1,5 @@
 import { CompareViewData, Mode, Task } from "../compare_view_data";
-import { push_task } from "../engine/task_solver";
+import { push_task } from "../task_solver";
 import { set_mouse_pos } from "../helper";
 
 export function init_slider_mode(cvd: CompareViewData): void {
@@ -27,7 +27,6 @@ export function terminate_slider_mode(cvd: CompareViewData): void {
 export function start_slider_move(cvd: CompareViewData, timestamp: number): boolean {
     push_task(cvd, Task.update_slider);
     cvd.start_timestamp = timestamp;
-    cvd.target_timestamp = timestamp + cvd.slider_time;
 
     cvd.start_pos = cvd.slider_pos;
     if (cvd.current_mode == Mode.horizontal)
@@ -46,29 +45,22 @@ export function instant_slide(cvd: CompareViewData, timestamp: number): boolean 
         else
             cvd.target_pos = cvd.mouse_pos[1] / cvd.height;
         cvd.start_pos = cvd.target_pos;
-        cvd.target_timestamp = timestamp;
-        cvd.start_timestamp = timestamp;
         cvd.slider_pos = cvd.target_pos;
     }
     return true;
 }
 
 export function update_slider(cvd: CompareViewData, timestamp: number): boolean {
-    let target_time_delta = cvd.target_timestamp - cvd.start_timestamp;
     let current_time_delta = timestamp - cvd.start_timestamp;
-    // avoid division by 0
-    if (target_time_delta == 0) {
-        cvd.slider_pos = cvd.target_pos;
-        return true;
-    }
     // current position in animation
-    let x = current_time_delta / target_time_delta;
+    let x = current_time_delta / cvd.slider_time;
     // clamp
     x = Math.min(Math.max(x, 0), 1)
     x = cvd.rate_function(x);
     // lerp
     cvd.slider_pos = (1 - x) * cvd.start_pos + x * cvd.target_pos;
-    return x == 1;
+    // reached target?
+    return cvd.slider_pos == cvd.target_pos;
 }
 
 export function render_slider(cvd: CompareViewData): void {

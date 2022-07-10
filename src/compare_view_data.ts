@@ -1,4 +1,3 @@
-// TODO: don't use strings for production maybe?
 export enum Mode {
     undefined = "undefined",
     horizontal = "horizontal",
@@ -6,6 +5,7 @@ export enum Mode {
     circle = "circle",
 };
 
+// TODO: don't use strings for production maybe?
 export enum Task {
     // don't do anything, just render once
     none = "none",
@@ -48,7 +48,7 @@ export interface CompareViewData {
     width: number;
     height: number;
 
-    ctrl_data: ControlData;
+    ctrl_data?: ControlData;
 
     // kept updated when necessary
     mouse_pos: [number, number];
@@ -67,18 +67,19 @@ export interface CompareViewData {
     // when render call from different source, circle shouldn't disappear
     render_circle: boolean;
     circle_size: number;
+    show_circle: boolean;
 
     // slider mode //
     // relative slider position in image (e.g. 0.5 -> in middle of frame)
     slider_pos: number;
     // time slider takes to reach target in ms
     slider_time: number;
-    // see: https://easings.net/
+    // see: https://easings.net
     rate_function: (x: number) => number;
+    show_slider: boolean;
 
     // for animation
     start_timestamp: number;
-    target_timestamp: number;
     start_pos: number;
     target_pos: number;
 };
