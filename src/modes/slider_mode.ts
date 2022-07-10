@@ -63,11 +63,7 @@ export function update_slider(cvd: CompareViewData, timestamp: number): boolean 
     return cvd.slider_pos == cvd.target_pos;
 }
 
-export function render_slider(cvd: CompareViewData): void {
-    cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
-
-    cvd.ctx.drawImage(cvd.images[0]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
-
+function render_second_img(cvd: CompareViewData): void {
     cvd.ctx.beginPath();
     if (cvd.current_mode == Mode.horizontal)
         cvd.ctx.rect(cvd.slider_pos * cvd.width, 0, cvd.width, cvd.height);
@@ -78,9 +74,17 @@ export function render_slider(cvd: CompareViewData): void {
     // save to remove clip later on
     cvd.ctx.save();
     cvd.ctx.clip();
-    // transparent -> white
-    // cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
+    // don't let second image overlap first with transparency
+    cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
     cvd.ctx.drawImage(cvd.images[1]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
     cvd.ctx.restore();
+}
+
+export function render_slider(cvd: CompareViewData): void {
+    cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
+
+    cvd.ctx.drawImage(cvd.images[0]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
+
+    render_second_img(cvd);
 }
 

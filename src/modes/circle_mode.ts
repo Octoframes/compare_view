@@ -45,6 +45,26 @@ export function remove_circle(cvd: CompareViewData): boolean {
     return true;
 }
 
+function render_background_img(cvd: CompareViewData): void {
+    // don't render on circle ->
+    // don't let second image overlap first with transparency
+    // simple clearRect (as used in slide mode) can't be used <- weird white 1px ring around circle
+    cvd.ctx.beginPath();
+    cvd.ctx.arc(cvd.mouse_pos[0], cvd.mouse_pos[1], cvd.circle_size - 1, 0, Math.PI * 2);
+    cvd.ctx.lineTo(cvd.width, 0);
+    cvd.ctx.lineTo(0, 0);
+    cvd.ctx.lineTo(0, cvd.height);
+    cvd.ctx.lineTo(cvd.width, cvd.height);
+    cvd.ctx.lineTo(cvd.width, 0);
+    cvd.ctx.closePath();
+
+    cvd.ctx.save();
+    cvd.ctx.clip();
+    // TODO: cvd.images[0]?.element as HTMLImageElement what the hell?
+    cvd.ctx.drawImage(cvd.images[0]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
+    cvd.ctx.restore();
+}
+
 function render_clipped_img(cvd: CompareViewData, image_idx: number, start_angle: number, end_angle: number): void {
     cvd.ctx.beginPath();
     cvd.ctx.arc(cvd.mouse_pos[0], cvd.mouse_pos[1], cvd.circle_size, start_angle, end_angle);
@@ -54,8 +74,6 @@ function render_clipped_img(cvd: CompareViewData, image_idx: number, start_angle
     // save to remove clip later on
     cvd.ctx.save();
     cvd.ctx.clip();
-    // transparent -> white
-    // cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
     cvd.ctx.drawImage(cvd.images[image_idx]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
     cvd.ctx.restore();
 }
@@ -64,8 +82,7 @@ export function render_circle(cvd: CompareViewData): void {
     if (cvd.render_circle) {
         cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
 
-        // TODO: cvd.images[0]?.element as HTMLImageElement what the hell?
-        cvd.ctx.drawImage(cvd.images[0]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
+        render_background_img(cvd);
 
         for (let i = 1; i < cvd.images_len; ++i) {
             let start_angle = (i - 1) * Math.PI * 2 / (cvd.images_len - 1);

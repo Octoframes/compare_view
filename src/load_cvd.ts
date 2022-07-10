@@ -20,6 +20,8 @@ export interface Config {
 }
 
 export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, config: Config, ctrl_data?: ControlData): void {
+    if (image_urls.length < 2)
+        throw `image_urls must contain at least two images, not ${image_urls.length}`;
     // default rate function
     function ease_in_out_cubic(x: number): number {
         return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
