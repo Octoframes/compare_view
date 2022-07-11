@@ -10,6 +10,13 @@ export function init_slider_mode(cvd: CompareViewData): void {
     cvd.canvas.onmouseup = () => {
         cvd.held_down = false;
     };
+    // prevent text selection
+    cvd.canvas.onfocus = () => {
+        document.body.style.userSelect = "none";
+    }
+    cvd.canvas.onblur = () => {
+        document.body.style.userSelect = "text";
+    }
     // keep slider active when hovering over edge
     document.onmouseup = () => {
         cvd.held_down = false;
@@ -34,11 +41,17 @@ export function init_slider_mode(cvd: CompareViewData): void {
 export function terminate_slider_mode(cvd: CompareViewData): void {
     cvd.canvas.onmousedown = null;
     cvd.canvas.onmouseup = null;
+    cvd.canvas.onfocus = null;
+    cvd.canvas.onblur = null;
     document.onmouseup = null;
     cvd.canvas.onmouseup = null;
     cvd.canvas.onmousemove = null;
     cvd.canvas.onmouseenter = null;
     cvd.canvas.onmouseleave = null;
+
+    cvd.held_down = false;
+    cvd.canvas.style.cursor = "default";
+    document.body.style.userSelect = "text";
 }
 
 // tasks //
