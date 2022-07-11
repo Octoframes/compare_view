@@ -9,13 +9,13 @@
 </head>
 
 <body>
-    <div style="display: flex; flex-direction: row; width: 100vw;">
+    <script src="./browser_compare_view.js"></script>
+
+    <div style="display: flex; flex-direction: row; width: 95vw;">
         <canvas id="canvas" style="width: 50%; height: min-content;"></canvas>
         <div id="controls" style="width: auto; margin-right: 40px;">
         </div>
     </div>
-
-    <script src="./browser_compare_view.js"></script>
     <script>
         compare_view.load(
             [
@@ -34,11 +34,80 @@
             "canvas",
             {
                 controls_id: "controls",
-                start_mode: "circle",
+                start_mode: "horizontal",
                 // circle_size: 500,
                 // circle_fraction: 1,
                 // circumference_fraction: 0.01,
                 // slider_fraction: 1,
+            }
+        );
+    </script>
+
+    <div style="display: flex; flex-direction: row; width: 95vw;">
+        <canvas id="canvas2" style="width: 50%; height: min-content;"></canvas>
+        <div id="controls2" style="width: auto; margin-right: 40px;">
+        </div>
+    </div>
+    <script>
+        compare_view.load(
+            [
+                // "./example_images/cat.png",
+                "./example_images/cat_grey.png",
+                "./example_images/cat_red.png",
+                "./example_images/cat_blue.png",
+                "./example_images/cat_green.png",
+            ],
+            "canvas2",
+            {
+                controls_id: "controls2",
+                // circle_size: 20,
+                // circle_fraction: 0.2,
+            }
+        );
+    </script>
+
+    <div style="display: flex; flex-direction: row; width: 95vw;">
+        <canvas id="canvas3" style="width: 50%; height: min-content;"></canvas>
+        <div id="controls3" style="width: auto; margin-right: 40px;">
+        </div>
+    </div>
+    <script>
+        compare_view.load(
+            [
+                "./example_images/cat.png",
+                "./example_images/cat_red.png",
+                "./example_images/cat_blue.png",
+                "./example_images/cat_green.png",
+                "./example_images/cat_grey.png",
+            ],
+            "canvas3",
+            {
+                controls_id: "controls3",
+                // circle_size: 20,
+                // circle_fraction: 0.2,
+            }
+        );
+    </script>
+
+    <div style="display: flex; flex-direction: row; width: 95vw;">
+        <canvas id="canvas4" style="width: 50%; height: min-content;"></canvas>
+        <div id="controls4" style="width: auto; margin-right: 40px;">
+        </div>
+    </div>
+    <script>
+        compare_view.load(
+            [
+                "./example_images/cat_grey.png",
+                "./example_images/cat.png",
+                // "./example_images/cat_red.png",
+                // "./example_images/cat_blue.png",
+                // "./example_images/cat_green.png",
+            ],
+            "canvas4",
+            {
+                controls_id: "controls4",
+                // circle_size: 20,
+                // circle_fraction: 0.2,
             }
         );
     </script>
