@@ -5,22 +5,21 @@ export enum Mode {
     circle = "circle",
 };
 
-// TODO: don't use strings for production maybe?
 export enum Task {
     // don't do anything, just render once
-    none = "none",
-    revolve_imgs = "revolve_imgs",
+    none,
+    revolve_imgs,
     // switch current_mode to next_mode
-    change_mode = "change_mode",
+    change_mode,
     // update circle position and start rendering
-    update_circle = "update_circle",
+    update_circle,
     // stop rendering
-    remove_circle = "stop_update_circle",
+    remove_circle,
 
     // mouse has been clicked
-    start_slider_move = "start_slider_move",
-    possible_instant_slide = "instant_slide",
-    update_slider = "update_slider",
+    start_slider_move,
+    possible_instant_slide,
+    update_slider,
 };
 
 export interface Image {
@@ -31,14 +30,16 @@ export interface Image {
 
 export interface ControlData {
     controls_parent: HTMLElement,
-    circle_button: HTMLInputElement,
-    horizontal_button: HTMLInputElement,
-    vertical_button: HTMLInputElement,
+
+    circle_check: HTMLInputElement,
+    horizontal_check: HTMLInputElement,
+    vertical_check: HTMLInputElement,
 
     revolve_imgs_button: HTMLButtonElement,
 }
 
 export interface CompareViewData {
+    // general //
     images: Image[],
     // number of images doesn't change
     images_len: number,
@@ -60,21 +61,21 @@ export interface CompareViewData {
 
     // what needs to be done in the next frame
     task_stack: Task[];
-    // don't can update function when it's already about to be called
+    // don't update function when it's already about to be called
     next_update_queued: boolean;
 
+    // circle mode //
     circumference_thickness: number;
 
-    // circle mode //
     // when render call from different source, circle shouldn't disappear
     render_circle: boolean;
     circle_size: number;
     show_circle: boolean;
     revolve_imgs_on_click: boolean;
 
+    // slider mode //
     slider_thickness: number;
 
-    // slider mode //
     // relative slider position in image (e.g. 0.5 -> in middle of frame)
     slider_pos: number;
     // time slider takes to reach target in ms

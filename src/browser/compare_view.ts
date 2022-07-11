@@ -10,12 +10,12 @@ export interface BrowserConfig extends Config {
     key?: string;
 }
 
-export function load(image_urls: string[], canvas_id: string, config: BrowserConfig | undefined) {
+export function load(image_urls: string[], canvas_id: string, config: BrowserConfig = {}) {
     load_cvd(
         image_urls,
         load_ctx(canvas_id),
-        config != undefined ? config : {},
-        config != undefined && config.controls_id != undefined ? create_controls(config.controls_id, config.key) : undefined,
+        config,
+        config.controls_id != undefined ? create_controls(config.controls_id, config.key) : undefined,
     )
 }
 

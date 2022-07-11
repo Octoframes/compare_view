@@ -21,7 +21,6 @@ export function init_circle_mode(cvd: CompareViewData): void {
         push_task(cvd, Task.update_circle);
 }
 export function terminate_circle_mode(cvd: CompareViewData): void {
-    cvd.canvas.onmouseenter = null;
     cvd.canvas.onmousemove = null;
     cvd.canvas.onmouseleave = null;
     cvd.canvas.onmousedown = null;
@@ -67,7 +66,7 @@ function render_background_img(cvd: CompareViewData): void {
 }
 
 // the cake is a lie
-function render_piece_of_cake(cvd: CompareViewData, start_angle: number, end_angle: number): void {
+function trace_piece_of_cake(cvd: CompareViewData, start_angle: number, end_angle: number): void {
     cvd.ctx.beginPath();
     cvd.ctx.arc(cvd.mouse_pos[0], cvd.mouse_pos[1], cvd.circle_size, start_angle, end_angle);
     // only line to center when not entire circle
@@ -77,7 +76,7 @@ function render_piece_of_cake(cvd: CompareViewData, start_angle: number, end_ang
 }
 
 function render_clipped_img(cvd: CompareViewData, image_idx: number, start_angle: number, end_angle: number): void {
-    render_piece_of_cake(cvd, start_angle, end_angle);
+    trace_piece_of_cake(cvd, start_angle, end_angle);
 
     // save to remove clip later on
     cvd.ctx.save();
@@ -85,8 +84,9 @@ function render_clipped_img(cvd: CompareViewData, image_idx: number, start_angle
     cvd.ctx.drawImage(cvd.images[image_idx]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
     cvd.ctx.restore();
 
+    // circle outline
     if (cvd.show_circle) {
-        render_piece_of_cake(cvd, start_angle, end_angle);
+        trace_piece_of_cake(cvd, start_angle, end_angle);
         cvd.ctx.strokeStyle = "black";
         cvd.ctx.lineWidth = cvd.circumference_thickness;
         cvd.ctx.stroke();
@@ -106,6 +106,7 @@ export function render_circle(cvd: CompareViewData): void {
         }
     }
     else {
+        // only draw background
         cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
         cvd.ctx.drawImage(cvd.images[0]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
     }

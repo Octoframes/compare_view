@@ -1,3 +1,4 @@
+// both horizontal and vertical mode
 import { CompareViewData, Mode, Task } from "../compare_view_data";
 import { push_task } from "../task_solver";
 import { set_mouse_pos } from "../helper";
@@ -129,7 +130,6 @@ function render_second_img(cvd: CompareViewData): void {
 
 export function render_slider(cvd: CompareViewData): void {
     cvd.ctx.clearRect(0, 0, cvd.width, cvd.height);
-
     cvd.ctx.drawImage(cvd.images[0]?.element as HTMLImageElement, 0, 0, cvd.width, cvd.height);
 
     if (cvd.show_slider)

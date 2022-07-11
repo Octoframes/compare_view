@@ -16,3 +16,13 @@ export function set_mouse_pos(cvd: CompareViewData, e: MouseEvent): void {
     ];
 }
 
+// from: https://medium.com/@weberzt/how-to-create-a-random-id-in-javascript-e92b39fedaef
+export function create_key(): string {
+    let key = "";
+    let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    for (let i = 0; i < 12; i++) {
+        key += characters.charAt(Math.floor(Math.random() * 36));
+    }
+    return key;
+}
+

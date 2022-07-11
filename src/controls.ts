@@ -1,16 +1,17 @@
+// only attach controls; don't create them
 import { CompareViewData, ControlData, Mode, Task } from "./compare_view_data";
 import { push_task } from "./task_solver";
 
 function disable_checkboxes(ctrl_data: ControlData): void {
-    ctrl_data.circle_button.checked = false;
-    ctrl_data.horizontal_button.checked = false;
-    ctrl_data.vertical_button.checked = false;
+    ctrl_data.circle_check.checked = false;
+    ctrl_data.horizontal_check.checked = false;
+    ctrl_data.vertical_check.checked = false;
 }
 
-function attach_mode_change_button(cvd: CompareViewData, button: HTMLInputElement, mode: Mode) {
-    button.onchange = () => {
+function attach_mode_checkbox(cvd: CompareViewData, checkbox: HTMLInputElement, mode: Mode) {
+    checkbox.onchange = () => {
         // suppress unchecking
-        if (!button.checked) {
+        if (!checkbox.checked) {
             reload_checkboxes(cvd);
             return;
         }
@@ -28,13 +29,13 @@ export function reload_checkboxes(cvd: CompareViewData): void {
     disable_checkboxes(cvd.ctrl_data);
     switch (cvd.current_mode) {
         case Mode.circle:
-            cvd.ctrl_data.circle_button.checked = true;
+            cvd.ctrl_data.circle_check.checked = true;
             break;
         case Mode.horizontal:
-            cvd.ctrl_data.horizontal_button.checked = true;
+            cvd.ctrl_data.horizontal_check.checked = true;
             break;
         case Mode.vertical:
-            cvd.ctrl_data.vertical_button.checked = true;
+            cvd.ctrl_data.vertical_check.checked = true;
             break;
         default:
             throw `unsupported mode: ${cvd.current_mode}`;
@@ -45,9 +46,9 @@ export function attach_control_events(cvd: CompareViewData): void {
     // there are no controls?
     if (cvd.ctrl_data == undefined)
         return;
-    attach_mode_change_button(cvd, cvd.ctrl_data.circle_button, Mode.circle);
-    attach_mode_change_button(cvd, cvd.ctrl_data.horizontal_button, Mode.horizontal);
-    attach_mode_change_button(cvd, cvd.ctrl_data.vertical_button, Mode.vertical);
+    attach_mode_checkbox(cvd, cvd.ctrl_data.circle_check, Mode.circle);
+    attach_mode_checkbox(cvd, cvd.ctrl_data.horizontal_check, Mode.horizontal);
+    attach_mode_checkbox(cvd, cvd.ctrl_data.vertical_check, Mode.vertical);
     cvd.ctrl_data.revolve_imgs_button.onclick = () => {
         push_task(cvd, Task.revolve_imgs);
     };

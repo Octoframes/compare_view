@@ -1,6 +1,6 @@
-import { Image } from "./compare_view_data";
+import { CompareViewData, Image } from "./compare_view_data";
 
-function verify_image_resolution(images: Image[]): [number, number] {
+function get_resolution(images: Image[]): [number, number] {
     let width = images[0]?.element.width as number;
     let height = images[0]?.element.height as number;
 
@@ -29,11 +29,15 @@ export function load_images(image_urls: string[], callback: (images: Image[], re
             ++loaded;
             // loading finished when all loaded
             if (loaded == num_images) {
-                let resolution = verify_image_resolution(images);
-                callback(images, resolution);
+                callback(images, get_resolution(images));
             }
         }
         image.element.src = image.url;
     }
+}
+
+export function revolve_imgs(cvd: CompareViewData): boolean {
+    cvd.images.unshift(cvd.images.pop() as Image);
+    return true;
 }
 

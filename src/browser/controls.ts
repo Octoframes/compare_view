@@ -1,4 +1,5 @@
 import { ControlData } from "../compare_view_data";
+import { create_key } from "../helper";
 
 function create_checkbox(id: string, label: string, parent: HTMLElement): HTMLInputElement {
     let checkbox = document.createElement("input");
@@ -25,24 +26,13 @@ function create_button(label: string, parent: HTMLElement): HTMLButtonElement {
     return button;
 }
 
-// from: https://medium.com/@weberzt/how-to-create-a-random-id-in-javascript-e92b39fedaef
-function create_key(): string {
-    let key = "";
-    let characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    for (let i = 0; i < 12; i++) {
-        key += characters.charAt(Math.floor(Math.random() * 36));
-    }
-    return key;
-}
-
-export function create_controls(controls_id: string, key?: string): ControlData {
-    key = key ? key : create_key();
+export function create_controls(controls_id: string, key: string = create_key()): ControlData {
     let controls = document.getElementById(controls_id) as HTMLElement;
     return {
         controls_parent: controls,
-        circle_button: create_checkbox(`${key}circle_button`, "Circle", controls),
-        horizontal_button: create_checkbox(`${key}horizontal_button`, "Horizontal", controls),
-        vertical_button: create_checkbox(`${key}vertical_button`, "Vertical", controls),
+        circle_check: create_checkbox(`${key}_circle_button`, "Circle", controls),
+        horizontal_check: create_checkbox(`${key}_horizontal_button`, "Horizontal", controls),
+        vertical_check: create_checkbox(`${key}_vertical_button`, "Vertical", controls),
         revolve_imgs_button: create_button("Revolve Images", controls),
     }
 }
