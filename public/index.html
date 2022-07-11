@@ -10,7 +10,7 @@
 
 <body>
     <div style="display: flex; flex-direction: row; width: 100vw;">
-        <canvas id="canvas" width=614 height=435 style=""></canvas>
+        <canvas id="canvas" style="width: 50%; height: min-content;"></canvas>
         <div id="controls" style="width: auto; margin-right: 40px;">
         </div>
     </div>
@@ -34,7 +34,11 @@
             "canvas",
             {
                 controls_id: "controls",
-                start_mode: "horizontal",
+                start_mode: "circle",
+                // circle_size: 500,
+                // circle_fraction: 1,
+                // circumference_fraction: 0.01,
+                // slider_fraction: 1,
             }
         );
     </script>

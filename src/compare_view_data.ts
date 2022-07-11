@@ -63,12 +63,16 @@ export interface CompareViewData {
     // don't can update function when it's already about to be called
     next_update_queued: boolean;
 
+    circumference_thickness: number;
+
     // circle mode //
     // when render call from different source, circle shouldn't disappear
     render_circle: boolean;
     circle_size: number;
     show_circle: boolean;
     revolve_imgs_on_click: boolean;
+
+    slider_thickness: number;
 
     // slider mode //
     // relative slider position in image (e.g. 0.5 -> in middle of frame)

@@ -5,10 +5,15 @@ import { load_images } from "./images";
 
 export interface Config {
     start_mode?: Mode;
+    // size of circle outline as fraction of image width
+    circumference_fraction?: number;
+    // overwrite circle size
     circle_size?: number;
+    circle_fraction?: number;
     // draw line around circle
     show_circle?: boolean;
     revolve_imgs_on_click?: boolean;
+    slider_fraction?: number;
     // time slider takes to reach clicked location
     slider_time?: number;
     // apply when moving slider
@@ -21,37 +26,41 @@ export interface Config {
 }
 
 export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, config: Config, ctrl_data?: ControlData): void {
-    if (image_urls.length < 2)
-        throw `image_urls must contain at least two images, not ${image_urls.length}`;
     // default rate function
     function ease_in_out_cubic(x: number): number {
         return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
     }
 
-    load_images(image_urls, (images) => {
+    load_images(image_urls, (images, resolution) => {
         let cvd: CompareViewData = {
             images: images,
             images_len: images.length,
 
             canvas: ctx.canvas,
             ctx: ctx,
-            width: ctx.canvas.width,
-            height: ctx.canvas.height,
+            width: resolution[0],
+            height: resolution[1],
 
             ctrl_data: ctrl_data,
+
+            mouse_pos: [0, 0],
+            held_down: false,
 
             next_mode: config.start_mode != undefined ? config.start_mode : Mode.circle,
             current_mode: Mode.undefined,
             task_stack: [],
             next_update_queued: false,
 
-            mouse_pos: [0, 0],
-            held_down: false,
+            circumference_thickness: resolution[0] * (config.circumference_fraction != undefined ? config.circumference_fraction : 0.005),
 
             render_circle: false,
-            circle_size: config.circle_size != undefined ? config.circle_size : 100,
+            // use circle_size when provided, otherwise use fraction
+            circle_size: config.circle_size != undefined ? config.circle_size :
+                resolution[0] * (config.circle_fraction != undefined ? config.circle_fraction : 0.2),
             show_circle: config.show_circle != undefined ? config.show_circle : true,
             revolve_imgs_on_click: config.revolve_imgs_on_click != undefined ? config.revolve_imgs_on_click : true,
+
+            slider_thickness: resolution[0] * (config.slider_fraction != undefined ? config.slider_fraction : 0.01),
 
             slider_pos: config.start_slider_pos != undefined ? config.start_slider_pos : 0.5,
             slider_time: config.slider_time != undefined ? config.slider_time : 400,
@@ -62,6 +71,8 @@ export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, co
             start_pos: 0,
             target_pos: 0,
         };
+        ctx.canvas.width = cvd.width;
+        ctx.canvas.height = cvd.height;
         attach_control_events(cvd);
 
         // start the action

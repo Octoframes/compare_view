@@ -88,7 +88,7 @@ function render_clipped_img(cvd: CompareViewData, image_idx: number, start_angle
     if (cvd.show_circle) {
         render_piece_of_cake(cvd, start_angle, end_angle);
         cvd.ctx.strokeStyle = "black";
-        cvd.ctx.lineWidth = 3;
+        cvd.ctx.lineWidth = cvd.circumference_thickness;
         cvd.ctx.stroke();
     }
 }

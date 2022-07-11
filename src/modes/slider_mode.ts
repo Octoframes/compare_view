@@ -94,7 +94,7 @@ function render_slider_line(cvd: CompareViewData): void {
     }
     cvd.ctx.closePath();
     cvd.ctx.strokeStyle = "black";
-    cvd.ctx.lineWidth = 5;
+    cvd.ctx.lineWidth = cvd.slider_thickness;
     cvd.ctx.stroke();
 }
 
