@@ -7,6 +7,9 @@ export function init_slider_mode(cvd: CompareViewData): void {
         cvd.held_down = true;
         push_task(cvd, Task.start_slider_move);
     };
+    cvd.canvas.onmouseup = () => {
+        cvd.held_down = false;
+    };
     // keep slider active when hovering over edge
     document.onmouseup = () => {
         cvd.held_down = false;
@@ -30,6 +33,7 @@ export function init_slider_mode(cvd: CompareViewData): void {
 }
 export function terminate_slider_mode(cvd: CompareViewData): void {
     cvd.canvas.onmousedown = null;
+    cvd.canvas.onmouseup = null;
     document.onmouseup = null;
     cvd.canvas.onmouseup = null;
     cvd.canvas.onmousemove = null;
