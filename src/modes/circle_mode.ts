@@ -70,7 +70,9 @@ function render_background_img(cvd: CompareViewData): void {
 function render_piece_of_cake(cvd: CompareViewData, start_angle: number, end_angle: number): void {
     cvd.ctx.beginPath();
     cvd.ctx.arc(cvd.mouse_pos[0], cvd.mouse_pos[1], cvd.circle_size, start_angle, end_angle);
-    cvd.ctx.lineTo(cvd.mouse_pos[0], cvd.mouse_pos[1]);
+    // only line to center when not entire circle
+    if (end_angle - start_angle != Math.PI * 2)
+        cvd.ctx.lineTo(cvd.mouse_pos[0], cvd.mouse_pos[1]);
     cvd.ctx.closePath();
 }
 
