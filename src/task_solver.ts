@@ -3,7 +3,7 @@ import { reload_checkboxes } from "./controls";
 import { init_circle_mode, remove_circle, terminate_circle_mode, update_circle, render_circle } from "./modes/circle_mode";
 import { init_slider_mode, instant_slide, render_slider, start_slider_move, terminate_slider_mode, update_slider } from "./modes/slider_mode";
 
-function rotate_imgs(cvd: CompareViewData): boolean {
+function revolve_imgs(cvd: CompareViewData): boolean {
     cvd.images.unshift(cvd.images.pop() as Image);
     return true;
 }
@@ -80,8 +80,8 @@ function update(cvd: CompareViewData, timestamp: number): void {
             case Task.change_mode:
                 handled = change_mode(cvd);
                 break;
-            case Task.rotate_imgs:
-                handled = rotate_imgs(cvd);
+            case Task.revolve_imgs:
+                handled = revolve_imgs(cvd);
                 break;
             case Task.update_circle:
                 handled = update_circle(cvd);

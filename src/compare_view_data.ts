@@ -9,7 +9,7 @@ export enum Mode {
 export enum Task {
     // don't do anything, just render once
     none = "none",
-    rotate_imgs = "rotate_imgs",
+    revolve_imgs = "revolve_imgs",
     // switch current_mode to next_mode
     change_mode = "change_mode",
     // update circle position and start rendering
@@ -35,7 +35,7 @@ export interface ControlData {
     horizontal_button: HTMLInputElement,
     vertical_button: HTMLInputElement,
 
-    rotate_imgs_button: HTMLButtonElement,
+    revolve_imgs_button: HTMLButtonElement,
 }
 
 export interface CompareViewData {
@@ -68,7 +68,7 @@ export interface CompareViewData {
     render_circle: boolean;
     circle_size: number;
     show_circle: boolean;
-    rotate_imgs_on_click: boolean;
+    revolve_imgs_on_click: boolean;
 
     // slider mode //
     // relative slider position in image (e.g. 0.5 -> in middle of frame)

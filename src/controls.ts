@@ -48,8 +48,8 @@ export function attach_control_events(cvd: CompareViewData): void {
     attach_mode_change_button(cvd, cvd.ctrl_data.circle_button, Mode.circle);
     attach_mode_change_button(cvd, cvd.ctrl_data.horizontal_button, Mode.horizontal);
     attach_mode_change_button(cvd, cvd.ctrl_data.vertical_button, Mode.vertical);
-    cvd.ctrl_data.rotate_imgs_button.onclick = () => {
-        push_task(cvd, Task.rotate_imgs);
+    cvd.ctrl_data.revolve_imgs_button.onclick = () => {
+        push_task(cvd, Task.revolve_imgs);
     };
 }
 

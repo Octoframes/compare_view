@@ -8,7 +8,7 @@ export interface Config {
     circle_size?: number;
     // draw line around circle
     show_circle?: boolean;
-    rotate_imgs_on_click?: boolean;
+    revolve_imgs_on_click?: boolean;
     // time slider takes to reach clicked location
     slider_time?: number;
     // apply when moving slider
@@ -51,7 +51,7 @@ export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, co
             render_circle: false,
             circle_size: config.circle_size != undefined ? config.circle_size : 100,
             show_circle: config.show_circle != undefined ? config.show_circle : true,
-            rotate_imgs_on_click: config.rotate_imgs_on_click != undefined ? config.rotate_imgs_on_click : true,
+            revolve_imgs_on_click: config.revolve_imgs_on_click != undefined ? config.revolve_imgs_on_click : true,
 
             slider_pos: config.start_slider_pos != undefined ? config.start_slider_pos : 0.5,
             slider_time: config.slider_time != undefined ? config.slider_time : 400,

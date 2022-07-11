@@ -43,7 +43,7 @@ export function create_controls(controls_id: string, key?: string): ControlData 
         circle_button: create_checkbox(`${key}circle_button`, "Circle", controls),
         horizontal_button: create_checkbox(`${key}horizontal_button`, "Horizontal", controls),
         vertical_button: create_checkbox(`${key}vertical_button`, "Vertical", controls),
-        rotate_imgs_button: create_button("Rotate Images", controls),
+        revolve_imgs_button: create_button("Revolve Images", controls),
     }
 }
 
