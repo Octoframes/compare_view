@@ -5,7 +5,7 @@ import { load_images } from "./images";
 
 export interface Config {
     start_mode?: Mode;
-    // size of circle outline as fraction of image width
+    // size of circle outline as fraction of image width or height (whatever is bigger)
     circumference_fraction?: number;
     // overwrite circle size
     circle_size?: number;
@@ -32,6 +32,7 @@ export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, co
     }
 
     load_images(image_urls, (images, resolution) => {
+        let max_size = Math.max(resolution[0], resolution[1]);
         let cvd: CompareViewData = {
             images: images,
             images_len: images.length,
@@ -51,16 +52,16 @@ export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, co
             task_stack: [],
             next_update_queued: false,
 
-            circumference_thickness: resolution[0] * (config.circumference_fraction != undefined ? config.circumference_fraction : 0.005),
+            circumference_thickness: max_size * (config.circumference_fraction != undefined ? config.circumference_fraction : 0.005),
 
             render_circle: false,
             // use circle_size when provided, otherwise use fraction
             circle_size: config.circle_size != undefined ? config.circle_size :
-                resolution[0] * (config.circle_fraction != undefined ? config.circle_fraction : 0.2),
+                max_size * (config.circle_fraction != undefined ? config.circle_fraction : 0.2),
             show_circle: config.show_circle != undefined ? config.show_circle : true,
             revolve_imgs_on_click: config.revolve_imgs_on_click != undefined ? config.revolve_imgs_on_click : true,
 
-            slider_thickness: resolution[0] * (config.slider_fraction != undefined ? config.slider_fraction : 0.01),
+            slider_thickness: max_size * (config.slider_fraction != undefined ? config.slider_fraction : 0.01),
 
             slider_pos: config.start_slider_pos != undefined ? config.start_slider_pos : 0.5,
             slider_time: config.slider_time != undefined ? config.slider_time : 400,

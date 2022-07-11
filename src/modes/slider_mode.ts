@@ -21,7 +21,6 @@ export function init_slider_mode(cvd: CompareViewData): void {
     // cursor style
     if (cvd.current_mode == Mode.horizontal)
         cvd.canvas.onmouseenter = () => {
-            console.log("test");
             cvd.canvas.style.cursor = "ew-resize";
         };
     else
