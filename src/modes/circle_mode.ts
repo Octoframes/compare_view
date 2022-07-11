@@ -26,7 +26,7 @@ export function terminate_circle_mode(cvd: CompareViewData): void {
     cvd.canvas.onmouseleave = null;
     cvd.canvas.onmousedown = null;
 
-    document.documentElement.style.cursor = "default";
+    cvd.canvas.style.cursor = "default";
 
     push_task(cvd, Task.remove_circle);
 }
@@ -34,14 +34,14 @@ export function terminate_circle_mode(cvd: CompareViewData): void {
 // tasks //
 export function update_circle(cvd: CompareViewData): boolean {
     cvd.render_circle = true;
-    document.documentElement.style.cursor = "none";
+    cvd.canvas.style.cursor = "none";
 
     return false;
 }
 
 export function remove_circle(cvd: CompareViewData): boolean {
     delete_task(cvd, Task.update_circle);
-    document.documentElement.style.cursor = "default";
+    cvd.canvas.style.cursor = "default";
 
     return true;
 }

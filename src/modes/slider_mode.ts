@@ -21,14 +21,15 @@ export function init_slider_mode(cvd: CompareViewData): void {
     // cursor style
     if (cvd.current_mode == Mode.horizontal)
         cvd.canvas.onmouseenter = () => {
-            document.documentElement.style.cursor = "ew-resize";
+            console.log("test");
+            cvd.canvas.style.cursor = "ew-resize";
         };
     else
         cvd.canvas.onmouseenter = () => {
-            document.documentElement.style.cursor = "ns-resize";
+            cvd.canvas.style.cursor = "ns-resize";
         };
     cvd.canvas.onmouseleave = () => {
-        document.documentElement.style.cursor = "default";
+        cvd.canvas.style.cursor = "default";
     };
 }
 export function terminate_slider_mode(cvd: CompareViewData): void {
