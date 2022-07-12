@@ -1,7 +1,7 @@
 {
     "name": "compare_view",
     "version": "0.1.2",
-    "description": "Blending Between Two Images",
+    "description": "Blend Between Muliple Images.",
     "repository": "https://github.com/zeproc/compare_view",
     "author": "christopher-besch <mail@chris-besch.com>",
     "license": "MIT",
