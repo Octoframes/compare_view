@@ -28,6 +28,8 @@ function create_button(label: string, parent: HTMLElement): HTMLButtonElement {
 
 export function create_controls(controls_id: string, key: string = create_key()): ControlData {
     let controls = document.getElementById(controls_id) as HTMLElement;
+    if (controls == null)
+        throw `controls_id '${controls_id}' isn't valid`;
     return {
         controls_parent: controls,
         circle_check: create_checkbox(`${key}_circle_button`, "Circle", controls),
