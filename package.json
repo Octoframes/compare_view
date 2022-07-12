@@ -1,6 +1,6 @@
 {
     "name": "compare_view",
-    "version": "0.0.3",
+    "version": "0.1.0",
     "description": "Blending Between Two Images",
     "main": "index.js",
     "repository": "https://github.com/zeproc/compare_view",
