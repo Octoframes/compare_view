@@ -2,6 +2,12 @@
 <style>
     canvas {
         width: 100%;
+        height: min-content;
+    }
+    .cv_container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
     }
 </style>
 
@@ -38,6 +44,7 @@ You can play around with it [here](https://jsfiddle.net/7t58914w)—this is the 
 # A few more Examples
 compare_view has multiple different modes, with new ones under development.
 If you have an idea for another way of comparing multiple images, please do [open an Issue on GitHub](https://github.com/Octoframes/compare_view/issues) or write a mail to [mail@chris-besch.com](mailto:mail@chris-besch.com).
+
 The mode displayed above is the `circle` mode.
 It also supports more than two images:
 <canvas id="more_than_two"></canvas>
@@ -62,10 +69,12 @@ This is the horizontal mode:
         ],
         "horizontal",
         {
-            "start_mode": "horizontal"
+            "start_mode": "horizontal",
+            "start_slider_pos": 0.2,
         }
     );
 </script>
+
 And this the vertical mode:
 <canvas id="vertical"></canvas>
 <script>
@@ -76,7 +85,26 @@ And this the vertical mode:
         ],
         "vertical",
         {
-            "start_mode": "horizontal"
+            "start_mode": "vertical"
+        }
+    );
+</script>
+
+You can also add some some controls to the mix:
+<div class="cv_container">
+    <canvas id="controls_canvas"></canvas>
+    <div id="controls_controls"></div>
+</div>
+<script>
+    compare_view.load(
+        [
+            "./images/grouping_1.png",
+            "./images/grouping_2.png",
+            "./images/grouping_10.png",
+        ],
+        "controls_canvas",
+        {
+            "controls_id": "controls_controls"
         }
     );
 </script>
@@ -118,5 +146,8 @@ Then you have to configure this compare_view instance by calling the `compare_vi
 </script>
 ```
 As you can see, you have to provide the ID again so that the right canvas gets used.
+
+# Settings
+If you for example want to change the 
 
 # Compile It Yourself
