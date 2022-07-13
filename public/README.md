@@ -73,7 +73,7 @@ This is the horizontal mode:
         "horizontal",
         {
             "start_mode": "horizontal",
-            "start_slider_pos": 0.2,
+            "start_slider_pos": 0.18,
         }
     );
 </script>
@@ -88,7 +88,8 @@ And this the vertical mode:
         ],
         "vertical",
         {
-            "start_mode": "vertical"
+            "start_mode": "vertical",
+            "start_slider_pos": 0.6,
         }
     );
 </script>

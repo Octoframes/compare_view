@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="#"><img src="https://raw.githubusercontent.com/Octoframes/compare_view/main/photos/banner.png"></a>
+    <a href="#"><img src="https://raw.githubusercontent.com/Octoframes/compare_view/main/banner.png"></a>
     <br />
     <br />
     <a href="https://github.com/Octoframes/compare_view/actions/workflows/build.yml">
