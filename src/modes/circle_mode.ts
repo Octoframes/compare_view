@@ -12,10 +12,15 @@ export function init_circle_mode(cvd: CompareViewData): void {
     cvd.canvas.onmouseleave = () => {
         push_task(cvd, Task.remove_circle);
     };
-    if (cvd.revolve_imgs_on_click)
-        cvd.canvas.onmousedown = () => {
-            push_task(cvd, Task.revolve_imgs);
+    if (cvd.revolve_imgs_on_click) {
+        cvd.canvas.ontouchstart = () => {
+            cvd.touching = true;
         };
+        cvd.canvas.onmousedown = () => {
+            if (!cvd.touching)
+                push_task(cvd, Task.revolve_imgs);
+        };
+    }
 
     if (cvd.canvas.matches(":hover"))
         push_task(cvd, Task.update_circle);
@@ -26,17 +31,21 @@ export function init_circle_mode(cvd: CompareViewData): void {
     }
     cvd.canvas.onblur = () => {
         document.body.style.userSelect = "text";
+        // highly heuristic but good enough
+        cvd.touching = false;
     }
 }
 export function terminate_circle_mode(cvd: CompareViewData): void {
     cvd.canvas.onmousemove = null;
     cvd.canvas.onmouseleave = null;
+    cvd.canvas.ontouchstart = null;
     cvd.canvas.onmousedown = null;
     cvd.canvas.onfocus = null;
     cvd.canvas.onblur = null;
 
     cvd.canvas.style.cursor = "default";
     document.body.style.userSelect = "text";
+    cvd.touching = false;
 
     push_task(cvd, Task.remove_circle);
 }

@@ -72,6 +72,8 @@ export interface CompareViewData {
     circle_size: number;
     show_circle: boolean;
     revolve_imgs_on_click: boolean;
+    // when using touch don't revolve images
+    touching: boolean;
 
     // slider mode //
     slider_thickness: number;

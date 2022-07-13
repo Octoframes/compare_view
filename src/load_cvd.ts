@@ -79,6 +79,7 @@ export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, cf
             circle_size: cfg.circle_size != undefined ? cfg.circle_size : max_size * choose_cfg(cfg, "circle_fraction"),
             show_circle: choose_cfg(cfg, "show_circle"),
             revolve_imgs_on_click: choose_cfg(cfg, "revolve_imgs_on_click"),
+            touching: false,
 
             slider_thickness: max_size * choose_cfg(cfg, "slider_fraction"),
 
