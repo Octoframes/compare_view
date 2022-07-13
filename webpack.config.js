@@ -27,11 +27,11 @@ module.exports = (env) => {
         },
         output: {
             // tell dev server where to serve code in memory from
-            publicPath: "public",
+            publicPath: "public/dist",
             // template based on keys in entry
             filename: "[name].js",
-            // need absolute path
-            path: path.resolve(__dirname, "public"),
+            // need absolute outputpath
+            path: path.resolve(__dirname, "public/dist"),
             // allow browser to access exposed functions
             library: {
                 name: "compare_view",
@@ -47,7 +47,7 @@ module.exports = (env) => {
             },
             devMiddleware: {
                 // where to serve compiled files from
-                publicPath: "/",
+                publicPath: "/dist",
             },
             hot: true,
         },

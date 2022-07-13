@@ -21,8 +21,14 @@ jobs:
       - name: Build
         run: yarn build_deploy
 
-      - name: Deploy Preview to GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: rossjrw/pr-preview-action@v1
         with:
           source-dir: public
-          preview-branch: deploy
+          preview-branch: pages
+
+      - name: Deploy Dist
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: public/dist
+          preview-branch: dist

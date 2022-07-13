@@ -6,15 +6,15 @@
     "author": "christopher-besch <mail@chris-besch.com>",
     "license": "MIT",
     "main": [
-        "./public/browser_compare_view.js",
-        "./public/component_compare_view.js"
+        "./public/dist/browser_compare_view.js",
+        "./public/dist/component_compare_view.js"
     ],
     "types": [
-        "public/types/browser/compare_view.d.ts",
-        "public/types/component/compare_view.d.ts"
+        "public/dist/types/browser/compare_view.d.ts",
+        "public/dist/types/component/compare_view.d.ts"
     ],
     "files": [
-        "public"
+        "public/dist"
     ],
     "scripts": {
         "develop": "webpack serve",

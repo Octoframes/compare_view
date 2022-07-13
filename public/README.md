@@ -1,4 +1,4 @@
-<script src="./browser_compare_view.js"></script>
+<script src="./dist/browser_compare_view.js"></script>
 <style>
     canvas {
         width: 100%;
