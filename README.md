@@ -9,6 +9,9 @@
         flex-direction: row;
         width: 100%;
     }
+    .cv_controls {
+        width: 120px;
+    }
 </style>
 
 <canvas id="heading"></canvas>
@@ -93,7 +96,7 @@ And this the vertical mode:
 You can also add some some controls to the mix:
 <div class="cv_container">
     <canvas id="controls_canvas"></canvas>
-    <div id="controls_controls"></div>
+    <div id="controls_controls" class="cv_controls"></div>
 </div>
 <script>
     compare_view.load(
