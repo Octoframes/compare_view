@@ -1,21 +1,35 @@
-<p align="center">
-    <a href="#"><img src="https://raw.githubusercontent.com/Octoframes/compare_view/main/photos/banner.png"></a>
-    <br />
-    <br />
-    <a href="https://github.com/Octoframes/compare_view/actions/workflows/build.yml">
-        <img src="https://github.com/Octoframes/compare_view/actions/workflows/build.yml/badge.svg" alt="Build">
-    </a>
-    <a href="https://github.com/Octoframes/compare_view/blob/main/LICENSE">
-        <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT license" />
-    </a>
-    <a href="https://badge.fury.io/js/compare_view">
-        <img src="https://badge.fury.io/js/compare_view.svg" alt="npm version" height="18">
-    </a>
-    <br />
-    <br />
-    <i>Blend Between Multiple Images.</i>
-</p>
-<hr />
+<script src="./dist/browser_compare_view.js"></script>
+<style>
+    canvas {
+        width: 100%;
+    }
+</style>
 
-Hi
+<canvas id="heading"></canvas>
+<script>
+    compare_view.load(
+        [
+            "./images/banner_grey.png",
+            "./images/banner_colour.png",
+        ],
+        "heading"
+    );
+</script>
+
+You can use compare_view on your website to compare two or more images.
+If you haven't noticed yet, the image above is actually a compare_view instance.
+You can play around with it [here](https://jsfiddle.net/f4n3dy68/1)—this is the source code:
+```html
+<script src="https://cdn.jsdelivr.net/npm/compare_view/public/browser_compare_view.js"></script>
+<canvas id="canvas_id" style="width: 100%"></canvas>
+<script>
+    compare_view.load(
+        [
+            "https://raw.githubusercontent.com/Octoframes/compare_view/main/public/images/banner_grey.png",
+            "https://raw.githubusercontent.com/Octoframes/compare_view/main/public/images/banner_colour.png",
+        ],
+        "canvas_id"
+    );
+</script>
+```
 
