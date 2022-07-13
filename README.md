@@ -201,14 +201,14 @@ So you can customize everything, leave the entire object empty (always using the
 
 If you want something about compare_view to be optional or configurable, feel free to [open an Issue on GitHub](https://github.com/Octoframes/compare_view/issues) or write a mail to [mail@chris-besch.com](mailto:mail@chris-besch.com).
 
-## Circle Size
+### Circle Size
 The circle size is defined as a fraction of the image width or height (whichever is bigger—called max_size in this document).
 So setting `circle_fraction` to `0.5` means the radius of the circle equals half of max_size.
 
 If fractions aren't your cup of tea, you can overwrite this behaviour by setting the `circle_size` setting.
 It defines the radius in pixel (using the resolution of your input images).
 
-## Showing the Slider and Circle Outline
+### Showing the Slider and Circle Outline
 If `show_slider` is set to `false`, the black line indicating the slider won't be rendered.
 This also applies to `show_circle`.
 
