@@ -1,4 +1,4 @@
-<script src="../browser_compare_view.js"></script>
+<script src="./browser_compare_view.js"></script>
 <style>
     canvas {
         width: 100%;
@@ -16,8 +16,8 @@
 <script>
     compare_view.load(
         [
-            "./banner_grey.png",
-            "./banner_colour.png",
+            "./images/banner_grey.png",
+            "./images/banner_colour.png",
         ],
         "heading"
     );

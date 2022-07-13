@@ -19,13 +19,24 @@ export function init_circle_mode(cvd: CompareViewData): void {
 
     if (cvd.canvas.matches(":hover"))
         push_task(cvd, Task.update_circle);
+
+    // prevent text selection
+    cvd.canvas.onfocus = () => {
+        document.body.style.userSelect = "none";
+    }
+    cvd.canvas.onblur = () => {
+        document.body.style.userSelect = "text";
+    }
 }
 export function terminate_circle_mode(cvd: CompareViewData): void {
     cvd.canvas.onmousemove = null;
     cvd.canvas.onmouseleave = null;
     cvd.canvas.onmousedown = null;
+    cvd.canvas.onfocus = null;
+    cvd.canvas.onblur = null;
 
     cvd.canvas.style.cursor = "default";
+    document.body.style.userSelect = "text";
 
     push_task(cvd, Task.remove_circle);
 }
