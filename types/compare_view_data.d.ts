@@ -45,6 +45,7 @@ export interface CompareViewData {
     circle_size: number;
     show_circle: boolean;
     revolve_imgs_on_click: boolean;
+    touching: boolean;
     slider_thickness: number;
     slider_pos: number;
     slider_time: number;
