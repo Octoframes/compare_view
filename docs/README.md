@@ -4,17 +4,24 @@
 <script>
     compare_view.load(
         [
-            "../example_images/cat.png",
-            "../example_images/cat_grey.png",
-            // "./example_images/cat_red.png",
-            // "./example_images/cat_blue.png",
-            // "./example_images/cat_green.png",
+            "./banner_grey.png",
+            "./banner_colour.png",
         ],
-        "heading",
-        {
-            // circle_size: 20,
-            // circle_fraction: 0.4,
-            // circumference_fraction: 0.1,
-        }
+        "heading"
     );
 </script>
+
+<style>
+    canvas {
+        width: 50%;
+    }
+
+    @media (max-width: 800px) {
+        canvas {
+            width: 100%;
+        }
+    }
+</style>
+
+# some more info
+
