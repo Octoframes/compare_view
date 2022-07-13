@@ -167,6 +167,11 @@ These are the default settings, the more complicated ones of which will be descr
         ],
         "my_canvas_id",
         {
+            // leave undefined to not create controls
+            controls_id?: string;
+            // random string used to create unique ids
+            key?: string;
+
             // either "circle", "horizonal" or "vertical"
             start_mode: "circle",
             // size of circle outline as fraction of image width or height (whatever is bigger)
@@ -200,6 +205,31 @@ So you can customize everything, leave the entire object empty (always using the
 ```
 
 If you want something about compare_view to be optional or configurable, feel free to [open an Issue on GitHub](https://github.com/Octoframes/compare_view/issues) or write a mail to [mail@chris-besch.com](mailto:mail@chris-besch.com).
+
+### Adding Controls
+The `controls_id` setting takes the ID of an HTML element you want the controls to be created in.
+So for example you could put them into an empty `<div>` element:
+```html
+<div>
+    <canvas id="my_canvas_id"></canvas>
+    <div id="my_controls_id"></div>
+</div>
+<script>
+    compare_view.load(
+        [
+            "image_1.png",
+            "image_2.png",
+            "image_3.png",
+        ],
+        "my_canvas_id",
+        {
+            "controls_id": "my_controls_id"
+        }
+    );
+</script>
+```
+Each control element needs a unique ID.
+These are created using a key that's random by default and yours if you define it with the `key` setting.
 
 ### Circle Size
 The circle size is defined as a fraction of the image width or height (whichever is bigger—called max_size in this document).
