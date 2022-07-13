@@ -27,8 +27,3 @@ jobs:
           source-dir: public
           preview-branch: pages
 
-      - name: Deploy Dist
-        uses: rossjrw/pr-preview-action@v1
-        with:
-          source-dir: public/dist
-          preview-branch: dist

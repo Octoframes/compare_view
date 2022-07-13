@@ -21,6 +21,12 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
-          branch: dist
+          branch: pages
           folder: public
           clean-exclude: pr-preview
+
+      - name: Deploy Compiled Files
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: dist
+          folder: public/dist
