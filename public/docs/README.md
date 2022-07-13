@@ -1,4 +1,16 @@
 <script src="../browser_compare_view.js"></script>
+<style>
+    canvas {
+        width: 100%;
+    }
+
+    @media (max-width: 800px) {
+        canvas {
+            width: 100%;
+        }
+    }
+</style>
+
 
 <canvas id="heading"></canvas>
 <script>
@@ -11,17 +23,11 @@
     );
 </script>
 
-<style>
-    canvas {
-        width: 50%;
-    }
+# Heading
 
-    @media (max-width: 800px) {
-        canvas {
-            width: 100%;
-        }
-    }
-</style>
+## Subheading
 
-# some more info
+```js
+console.log("some code");
+```
 

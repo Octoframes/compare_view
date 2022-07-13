@@ -11,30 +11,43 @@
 <body>
     <script src="../browser_compare_view.js"></script>
 
-    <canvas id="heading"></canvas>
-    <script>
-        compare_view.load(
-            [
-                "./banner_grey.png",
-                "./banner_colour.png",
-            ],
-            "heading",
-            {
-                // "revolve_imgs_on_click": false,
-            }
-        );
-    </script>
+    <div class="container">
+
+        <canvas id="heading"></canvas>
+        <script>
+            compare_view.load(
+                [
+                    "./banner_grey.png",
+                    "./banner_colour.png",
+                ],
+                "heading",
+                {
+                    // "revolve_imgs_on_click": false,
+                }
+            );
+        </script>
+    </div class="container">
 
     <style>
-        canvas {
-            width: 50%;
+        body {
+            display: flex;
+            justify-content: center;
         }
 
-        @media (max-width: 800px) {
-            canvas {
-                width: 100%;
-            }
+        .container {
+            margin-top: 20px;
+            max-width: 1200px;
         }
+
+        canvas {
+            width: 100%;
+        }
+
+        /* @media (max-width: 800px) { */
+        /*     canvas { */
+        /*         width: 100%; */
+        /*     } */
+        /* } */
     </style>
 </body>
 
