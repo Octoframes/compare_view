@@ -22,5 +22,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: deploy
-          folder: pages
+          folder: public
           clean-exclude: pr-preview
