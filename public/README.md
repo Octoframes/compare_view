@@ -61,6 +61,8 @@ It also supports more than two images:
         "more_than_two"
     );
 </script>
+Actually you can load as many images as you like, or your eyes can handle—
+try out a couple dozen images and you'll see what I mean.
 
 This is the horizontal mode:
 <canvas id="horizontal"></canvas>
@@ -89,7 +91,7 @@ And this the vertical mode:
         "vertical",
         {
             "start_mode": "vertical",
-            "start_slider_pos": 0.6,
+            "start_slider_pos": 0.65,
         }
     );
 </script>
@@ -121,7 +123,7 @@ There are five different ways of doing so:
     If you want to use compare_view for a production deployment, consider using one of the options below.
 2.  Simply **download** the file from [here](https://github.com/Octoframes/compare_view/releases/latest) and put it in your static folder (if you don't know what that means, just put it next to you `index.html`).
     Now you can import it using the relative path to the `browser_compare_view.js` from your `index.html`.
-3.  **Cloning** this repo (or adding it as a submodule) and checking out the `dist` branch, which contains a precompiled version of compare_view.
+3.  **Cloning** [the compare_view repo](https://github.com/Octoframes/compare_view) (or adding it as a submodule) and checking out the `dist` branch, which contains a precompiled version of compare_view.
     You can directly import the file from there.
 4.  Instead of checking out the `dist` branch you could also stick to the `main` branch and [compile it yourself](#compile-it-yourself).
 5.  If you're already using some **NPM** packages, feel free to download compare_view with `npm i compare_view`.
@@ -152,6 +154,78 @@ Then you have to configure this compare_view instance by calling the `compare_vi
 As you can see, you have to provide the ID again so that the right canvas gets used.
 
 # Settings
-If you for example want to change the 
+If you for example want to change the starting mode or add the controls you need to tweak compare_view via its settings.
+The `compare_view.load` function takes an optional `config` parameter.
+These are the default settings, the more complicated ones of which will be described in detail later on:
+```html
+<script>
+    compare_view.load(
+        [
+            "image_1.png",
+            "image_2.png",
+            "image_3.png",
+        ],
+        "my_canvas_id",
+        {
+            // either "circle", "horizonal" or "vertical"
+            start_mode: "circle",
+            // size of circle outline as fraction of image width or height (whatever is bigger)
+            circumference_fraction: 0.005,
+            // overwrite circle size
+            circle_size: undefined,
+            circle_fraction: 0.2,
+            // draw line around circle
+            show_circle: true,
+            revolve_imgs_on_click: true,
+            slider_fraction: 0.01,
+            // time slider takes to reach clicked location
+            slider_time: 400,
+            // apply when moving slider
+            // see: https://easings.net
+            rate_function: ease_in_out_cubic,
+            // 0.0 -> left; 1.0 -> right
+            start_slider_pos: 0.5,
+            // draw line at slider
+            show_slider: true,
+        }
+    );
+</script>
+```
+You can change as many or as few of these as you like.
+So you can customize everything, leave the entire object empty (always using the defaults) or something in between:
+```js
+{
+    start_mode: "horizontal",
+}
+```
+
+If you want something about compare_view to be optional or configurable, feel free to [open an Issue on GitHub](https://github.com/Octoframes/compare_view/issues) or write a mail to [mail@chris-besch.com](mailto:mail@chris-besch.com).
+
+## Circle Size
+The circle size is defined as a fraction of the image width or height (whichever is bigger—called max_size in this document).
+So setting `circle_fraction` to `0.5` means the radius of the circle equals half of max_size.
+
+If fractions aren't your cup of tea, you can overwrite this behaviour by setting the `circle_size` setting.
+It defines the radius in pixel (using the resolution of your input images).
+
+## Showing the Slider and Circle Outline
+If `show_slider` is set to `false`, the black line indicating the slider won't be rendered.
+This also applies to `show_circle`.
 
 # Compile It Yourself
+Once you've cloned [the compare_view repo](https://github.com/Octoframes/compare_view) you have to install all required dependencies:
+```
+yarn install
+```
+After that you can compile compare_view.
+```
+// compile debug build
+yarn run build_debug
+
+// compile deployment build
+yarn run build_deploy
+
+// start development server
+yarn run develop
+```
+
