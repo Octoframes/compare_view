@@ -55,7 +55,7 @@ It also supports more than two images:
         [
             "./images/cat.png",
             "./images/cat_grey.png",
-            "./images/cat_blue.png",
+            "./images/cat_green.png",
         ],
         "more_than_two"
     );
