@@ -26,8 +26,7 @@
 </script>
 
 You can use compare_view on your website to compare two or more images.
-If you haven't noticed yet, the image above is actually a compare_view instance—
-click it and you'll see what that means.
+If you haven't noticed yet, the image above is actually a compare_view instance—click it and you'll see what that means.
 You can play around with it [here](https://jsfiddle.net/7t58914w)—this is the source code:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/compare_view/public/dist/browser_compare_view.js"></script>
@@ -61,8 +60,7 @@ It also supports more than two images:
         "more_than_two"
     );
 </script>
-Actually you can load as many images as you like, or your eyes can handle—
-try out a couple dozen images and you'll see what I mean.
+Actually you can load as many images as you like, or your eyes can handle—try out a couple dozen images and you'll see what I mean.
 
 This is the horizontal mode:
 <canvas id="horizontal"></canvas>
@@ -125,7 +123,7 @@ There are five different ways of doing so:
     Now you can import it using the relative path to the `browser_compare_view.js` from your `index.html`.
 3.  **Cloning** [the compare_view repo](https://github.com/Octoframes/compare_view) (or adding it as a submodule) and checking out the `dist` branch, which contains a precompiled version of compare_view.
     You can directly import the file from there.
-4.  Instead of checking out the `dist` branch you could also stick to the `main` branch and [compile it yourself](#compile-it-yourself).
+4.  Instead of checking out the `dist` branch you could also stick to `main` and [compile it yourself](#compile-it-yourself).
 5.  If you're already using some **NPM** packages, feel free to download compare_view with `npm i compare_view`.
     Then you can find the file in `node_modules/compare_view/public/dist/browser_compare_view.js`.
 
@@ -136,8 +134,7 @@ First you have to create an HTML canvas, which compare_view will draw on:
 <canvas id="my_canvas_id" style="width: 100%"></canvas>
 ```
 The width style is used to scale the canvas as far as there is room for it, but it's optional so feel free to omit it.
-`my_canvas_id` must be a unique ID *id*entifying this canvas—
-so use a different ID for each and every compare_view instance.
+`my_canvas_id` must be a unique ID *id*entifying this canvas—so use a different ID for each and every compare_view instance.
 Then you have to configure this compare_view instance by calling the `compare_view.load` function in a `<script>` tag.
 ```html
 <script>
@@ -151,10 +148,10 @@ Then you have to configure this compare_view instance by calling the `compare_vi
     );
 </script>
 ```
-As you can see, you have to provide the ID again so that the right canvas gets used.
+Here you have to define the image URLs and, as you can see, you have to provide the ID again so that the right canvas gets used.
 
 # Settings
-If you for example want to change the starting mode or add the controls you need to tweak compare_view via its settings.
+If you for example want to change the starting mode or add the controls, you need to tweak compare_view via its settings.
 The `compare_view.load` function takes an optional `config` parameter.
 These are the default settings, the more complicated ones of which will be described in detail later on:
 ```html
@@ -204,11 +201,12 @@ So you can customize everything, leave the entire object empty (always using the
 }
 ```
 
-If you want something about compare_view to be optional or configurable, feel free to [open an Issue on GitHub](https://github.com/Octoframes/compare_view/issues) or write a mail to [mail@chris-besch.com](mailto:mail@chris-besch.com).
+If you want a feature of compare_view to be optional or customizable, feel free to [open an Issue on GitHub](https://github.com/Octoframes/compare_view/issues) or write a mail to [mail@chris-besch.com](mailto:mail@chris-besch.com).
 
 ### Adding Controls
-The `controls_id` setting takes the ID of an HTML element you want the controls to be created in.
-So for example you could put them into an empty `<div>` element:
+The `controls_id` setting takes the ID of an HTML element.
+In this element the controls get created in.
+So for example you could put them into an empty `<div>` element like this:
 ```html
 <div>
     <canvas id="my_canvas_id"></canvas>
@@ -228,15 +226,17 @@ So for example you could put them into an empty `<div>` element:
     );
 </script>
 ```
-Each control element needs a unique ID.
-These are created using a key that's random by default and yours if you define it with the `key` setting.
+The id used for the canvas mustn't be the same as the one used for the controls.
+
+Each control element compare_view creates also needs a unique ID.
+These are automatically created using a random key by default and yours if you define it with the `key` setting.
 
 ### Circle Size
 The circle size is defined as a fraction of the image width or height (whichever is bigger—called max_size in this document).
 So setting `circle_fraction` to `0.5` means the radius of the circle equals half of max_size.
 
 If fractions aren't your cup of tea, you can overwrite this behaviour by setting the `circle_size` setting.
-It defines the radius in pixel (using the resolution of your input images).
+It defines the radius in pixel.
 
 ### Showing the Slider and Circle Outline
 If `show_slider` is set to `false`, the black line indicating the slider won't be rendered.
@@ -249,13 +249,23 @@ yarn install
 ```
 After that you can compile compare_view.
 ```
-// compile debug build
+# compile debug build
 yarn run build_debug
 
-// compile deployment build
+# compile deployment build
 yarn run build_deploy
 
-// start development server
+# start development server
 yarn run develop
 ```
+
+# Development
+compare_view is still under development.
+If you encounter a bug or have an idea for a new feature, please do [open an Issue on GitHub](https://github.com/Octoframes/compare_view/issues) or write a mail to [mail@chris-besch.com](mailto:mail@chris-besch.com).
+
+Thanks for using our software.
+Have a nice day.
+
+# Jupyter Splitview
+PS: If you're interested in using compare_view with Jupyter Lab, check out [Jupyter Splitview](https://github.com/Octoframes/jupyter-splitview), another one of our projects.
 
