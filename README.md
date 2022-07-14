@@ -19,3 +19,9 @@
 
 # [Interactive Example and Documentation](https://octoframes.github.io/compare_view)
 
+compare_view is still under development.
+If you encounter a bug or have an idea for a new feature, please do [open an Issue](https://github.com/Octoframes/compare_view/issues) or write a mail to [mail@chris-besch.com](mailto:mail@chris-besch.com).
+
+Thanks for using our software.
+Have a nice day.
+
