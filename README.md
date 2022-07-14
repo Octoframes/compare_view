@@ -25,6 +25,6 @@ If you encounter a bug or have an idea for a new feature, please do [open an Iss
 Thanks for using our software.
 Have a nice day.
 
-# Jupyter Splitview
-PS: If you're interested in using compare_view with Jupyter Lab, check out [Jupyter Splitview](https://github.com/Octoframes/jupyter-splitview), another one of our projects.
+# Jupyter compare_view
+PS: If you're interested in using compare_view with Jupyter Lab, check out [Jupyter compare_view](https://github.com/Octoframes/jupyter_compare_view), another one of our projects.
 
