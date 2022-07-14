@@ -2,7 +2,6 @@
 <style>
     canvas {
         width: 100%;
-        height: min-content;
     }
     .cv_container {
         display: flex;
