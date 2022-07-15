@@ -1,5 +1,6 @@
 // entry point for use directly in browser
-import { Config, load_cvd } from "../load_cvd";
+import { Config } from "../cfg";
+import { load_cvd } from "../load_cvd";
 import { load_ctx } from "./canvas";
 import { create_controls } from "./controls";
 

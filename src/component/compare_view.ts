@@ -1,6 +1,6 @@
-// entry point for component based use
-import { Config } from "../load_cvd";
+import { Config } from "../cfg";
 
+// entry point for component based use
 export interface ComponentConfig extends Config {
     create_controls?: boolean;
 }
