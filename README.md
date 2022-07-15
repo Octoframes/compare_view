@@ -95,7 +95,7 @@ And this the vertical mode:
 
 You can also add some some controls to the mix:
 <div class="cv_container">
-    <div><canvas id="controls_canvas"></canvas>
+    <div><canvas id="controls_canvas"></canvas></div>
     <div id="controls_controls" class="cv_controls"></div>
 </div>
 <script>
@@ -207,10 +207,8 @@ The `controls_id` setting takes the ID of an HTML element.
 In this element the controls get created in.
 So for example you could put them into an empty `<div>` element like this:
 ```html
-<div>
-    <canvas id="my_canvas_id"></canvas>
-    <div id="my_controls_id"></div>
-</div>
+<canvas id="my_canvas_id"></canvas>
+<div id="my_controls_id"></div>
 <script>
     compare_view.load(
         [
