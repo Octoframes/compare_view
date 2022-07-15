@@ -1,4 +1,4 @@
-import { Config } from "../load_cvd";
+import { Config } from "../cfg";
 export interface BrowserConfig extends Config {
     controls_id?: string;
     key?: string;
