@@ -9,7 +9,7 @@
         width: 100%;
     }
     .cv_controls {
-        width: 200px;
+        width: 120px;
     }
 </style>
 
@@ -95,7 +95,7 @@ And this the vertical mode:
 
 You can also add some some controls to the mix:
 <div class="cv_container">
-    <div><canvas id="controls_canvas"></canvas></div>
+    <div><canvas id="controls_canvas"></canvas>
     <div id="controls_controls" class="cv_controls"></div>
 </div>
 <script>
