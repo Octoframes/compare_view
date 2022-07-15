@@ -26,7 +26,7 @@
 
 You can use compare_view on your website to compare two or more images.
 If you haven't noticed yet, the image above is actually a compare_view instance—click it and you'll see what that means.
-You can play around with it [here](https://jsfiddle.net/7t58914w)—this is the source code:
+You can play around with it [here](https://jsfiddle.net/7t58914w) to add your own images—this is the source code:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/compare_view/public/dist/browser_compare_view.js"></script>
 
@@ -95,7 +95,7 @@ And this the vertical mode:
 
 You can also add some some controls to the mix:
 <div class="cv_container">
-    <canvas id="controls_canvas"></canvas>
+    <div><canvas id="controls_canvas"></canvas></div>
     <div id="controls_controls" class="cv_controls"></div>
 </div>
 <script>
