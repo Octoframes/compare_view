@@ -1,8 +1,12 @@
 import { Config } from "../cfg";
 
-// entry point for component based use
 export interface ComponentConfig extends Config {
     create_controls?: boolean;
 }
 
-// TODO: implement
+const CompareView = (config: ComponentConfig) => {
+    return <h1>Hello World!</h1>;
+}
+
+export default CompareView;
+

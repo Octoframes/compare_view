@@ -9,13 +9,13 @@ module.exports = (env) => {
         // only entry file, include any imported files
         entry: {
             browser_compare_view: "./src/browser/compare_view.ts",
-            component_compare_view: "./src/component/compare_view.ts",
+            component_compare_view: "./src/component/compare_view.tsx",
         },
         module: {
             rules: [
                 {
                     // when test passed
-                    test: /\.ts$/,
+                    test: /\.tsx?$/,
                     // use ts-loader to compile
                     use: "ts-loader",
                     include: [path.resolve(__dirname, "src")],
@@ -23,7 +23,7 @@ module.exports = (env) => {
             ],
         },
         resolve: {
-            extensions: [".ts", ".js"],
+            extensions: [".ts", ".js", ".tsx", ".jsx"],
         },
         output: {
             // tell dev server where to serve code in memory from
