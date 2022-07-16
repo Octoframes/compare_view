@@ -20,7 +20,6 @@ export interface Image {
     label: string;
 }
 export interface ControlData {
-    controls_parent: HTMLElement;
     circle_check: HTMLInputElement;
     horizontal_check: HTMLInputElement;
     vertical_check: HTMLInputElement;
