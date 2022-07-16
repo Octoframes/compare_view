@@ -8,19 +8,6 @@ function disable_checkboxes(ctrl_data: ControlData): void {
     ctrl_data.vertical_check.checked = false;
 }
 
-function attach_mode_checkbox(cvd: CompareViewData, checkbox: HTMLInputElement, mode: Mode) {
-    checkbox.onchange = () => {
-        // suppress unchecking
-        if (!checkbox.checked) {
-            reload_checkboxes(cvd);
-            return;
-        }
-        cvd.next_mode = mode;
-        // checkboxes get checked in change_mode function
-        push_task(cvd, Task.change_mode);
-    }
-}
-
 // ensure checkboxes show correct mode
 export function reload_checkboxes(cvd: CompareViewData): void {
     // there are no controls?
@@ -42,15 +29,16 @@ export function reload_checkboxes(cvd: CompareViewData): void {
     }
 }
 
-export function attach_control_events(cvd: CompareViewData): void {
-    // there are no controls?
-    if (cvd.ctrl_data == undefined)
-        return;
-    attach_mode_checkbox(cvd, cvd.ctrl_data.circle_check, Mode.circle);
-    attach_mode_checkbox(cvd, cvd.ctrl_data.horizontal_check, Mode.horizontal);
-    attach_mode_checkbox(cvd, cvd.ctrl_data.vertical_check, Mode.vertical);
-    cvd.ctrl_data.revolve_imgs_button.onclick = () => {
-        push_task(cvd, Task.revolve_imgs);
+export function get_mode_change_callback(cvd: CompareViewData, mode: Mode): (e: Event) => void {
+    return (e: Event) => {
+        // suppress unchecking
+        if (!(e.target as HTMLInputElement).checked) {
+            reload_checkboxes(cvd);
+            return;
+        }
+        cvd.next_mode = mode;
+        // checkboxes get checked in change_mode function
+        push_task(cvd, Task.change_mode);
     };
 }
 

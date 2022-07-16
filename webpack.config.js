@@ -10,6 +10,7 @@ module.exports = (env) => {
         entry: {
             browser_compare_view: "./src/browser/compare_view.ts",
             component_compare_view: "./src/component/compare_view.tsx",
+            example_react_index: "./src/component/example/react_index.tsx",
         },
         module: {
             rules: [

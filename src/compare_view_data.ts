@@ -23,26 +23,26 @@ export enum Task {
 };
 
 export interface Image {
-    url: string,
-    element: HTMLImageElement,
-    label: string,
+    url: string;
+    element: HTMLImageElement;
+    label: string;
 }
 
 export interface ControlData {
-    controls_parent: HTMLElement,
+    controls_parent: HTMLElement;
 
-    circle_check: HTMLInputElement,
-    horizontal_check: HTMLInputElement,
-    vertical_check: HTMLInputElement,
+    circle_check: HTMLInputElement;
+    horizontal_check: HTMLInputElement;
+    vertical_check: HTMLInputElement;
 
-    revolve_imgs_button: HTMLButtonElement,
+    revolve_imgs_button: HTMLButtonElement;
 }
 
 export interface CompareViewData {
     // general //
-    images: Image[],
+    images: Image[];
     // number of images doesn't change
-    images_len: number,
+    images_len: number;
 
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;

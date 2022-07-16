@@ -1,11 +1,17 @@
-import { Mode, Task, CompareViewData, ControlData } from "./compare_view_data";
+import { Mode, Task, CompareViewData } from "./compare_view_data";
 import { push_task } from "./task_solver";
-import { attach_control_events } from "./controls";
 import { load_images } from "./images";
 import { load_canvas_scaling } from "./scaling";
 import { choose_cfg, Config } from "./cfg";
 
-export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, cfg: Config, ctrl_data?: ControlData): void {
+function prevent_double_attaching(canvas: HTMLCanvasElement): void {
+    if (canvas.dataset["in_use"] === "y")
+        throw `the canvas with the id '${canvas.id}' is already in use`;
+    canvas.dataset["in_use"] = "y";
+}
+
+export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, cfg: Config, prerun_callback: (cvd: CompareViewData) => void): void {
+    prevent_double_attaching(ctx.canvas);
     load_images(image_urls, (images, img_resolution) => {
         // used to e.g. scale circle correctly 
         let cvd: CompareViewData = {
@@ -18,7 +24,8 @@ export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, cf
             width: 0,
             height: 0,
 
-            ctrl_data: ctrl_data,
+            // to be changed later
+            ctrl_data: undefined,
 
             mouse_pos: [0, 0],
             held_down: false,
@@ -51,13 +58,10 @@ export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, cf
             start_pos: 0,
             target_pos: 0,
         };
-        attach_control_events(cvd);
         load_canvas_scaling(cvd, img_resolution, cfg);
 
-        // protect against double attaching
-        if (cvd.canvas.dataset["in_use"] === "y")
-            throw `the canvas with the id '${cvd.canvas.id}' is already in use`;
-        cvd.canvas.dataset["in_use"] = "y";
+        // e.g. let caller attach controls
+        prerun_callback(cvd);
         // start the action
         push_task(cvd, Task.change_mode);
     });
