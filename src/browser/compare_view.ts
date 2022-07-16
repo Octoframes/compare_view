@@ -1,7 +1,7 @@
 // entry point for use directly in browser
 import { Config } from "../cfg";
 import { load_cvd } from "../load_cvd";
-import { attach_control_data } from "./attach_controls";
+import { attach_control_data } from "../controls";
 import { load_ctx } from "./canvas";
 import { create_controls } from "./create_controls";
 

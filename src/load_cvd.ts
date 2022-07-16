@@ -10,7 +10,7 @@ function prevent_double_attaching(canvas: HTMLCanvasElement): void {
     canvas.dataset["in_use"] = "y";
 }
 
-export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, cfg: Config, prerun_callback: (cvd: CompareViewData) => void): void {
+export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, cfg: Config = {}, prerun_callback?: (cvd: CompareViewData) => void): void {
     prevent_double_attaching(ctx.canvas);
     load_images(image_urls, (images, img_resolution) => {
         // used to e.g. scale circle correctly 
@@ -61,7 +61,8 @@ export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, cf
         load_canvas_scaling(cvd, img_resolution, cfg);
 
         // e.g. let caller attach controls
-        prerun_callback(cvd);
+        if (prerun_callback != undefined)
+            prerun_callback(cvd);
         // start the action
         push_task(cvd, Task.change_mode);
     });

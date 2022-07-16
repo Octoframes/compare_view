@@ -31,7 +31,6 @@ export function create_controls(controls_id: string, key: string = create_key())
     if (controls == null)
         throw `controls_id '${controls_id}' isn't valid`;
     return {
-        controls_parent: controls,
         circle_check: create_checkbox(`${key}_circle_button`, "Circle", controls),
         horizontal_check: create_checkbox(`${key}_horizontal_button`, "Horizontal", controls),
         vertical_check: create_checkbox(`${key}_vertical_button`, "Vertical", controls),
