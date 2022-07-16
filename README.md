@@ -9,7 +9,7 @@
         width: 100%;
     }
     .cv_controls {
-        width: 120px;
+        width: 200px;
     }
 </style>
 
