@@ -1,4 +1,11 @@
 import { Config } from "../cfg";
-export interface ComponentConfig extends Config {
+import React from "react";
+interface ComponentConfig extends Config {
     create_controls?: boolean;
 }
+export interface CompareViewProps {
+    image_urls: string[];
+    config?: ComponentConfig;
+}
+declare const CompareView: React.FC<CompareViewProps>;
+export default CompareView;
