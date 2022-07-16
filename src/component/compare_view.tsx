@@ -39,7 +39,7 @@ const CompareView: React.FC<CompareViewProps> = (props) => {
     }, []);
 
     return (
-        <div style={{ display: "flex", flex_direction: "row", width: "100%" }}>
+        <div style={{ display: "flex", flexDirection: "row", width: "100%" }}>
             <div>
                 <canvas style={{ width: "100%" }} ref={canvas_ref} tabIndex={1}></canvas>
             </div>
