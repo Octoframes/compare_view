@@ -1,5 +1,5 @@
 import React from "react";
-import CompareView from "../compare_view";
+import { CompareView } from "../compare_view";
 
 const ReactApp: React.FC = () => {
     return (

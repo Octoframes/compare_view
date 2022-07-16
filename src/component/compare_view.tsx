@@ -13,7 +13,7 @@ export interface CompareViewProps {
     config?: ComponentConfig;
 }
 
-const CompareView: React.FC<CompareViewProps> = (props) => {
+export const CompareView: React.FC<CompareViewProps> = (props) => {
     // used to access ctx after render
     let canvas_ref = React.createRef<HTMLCanvasElement>();
     let circle_ref = React.createRef<HTMLInputElement>();
@@ -66,6 +66,4 @@ const CompareView: React.FC<CompareViewProps> = (props) => {
         </div>
     );
 }
-
-export default CompareView;
 
