@@ -1,11 +1,11 @@
 {
     "name": "compare_view",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Blend Between Muliple Images.",
     "repository": "https://github.com/zeproc/compare_view",
     "author": "christopher-besch <mail@chris-besch.com>",
     "license": "MIT",
-    "main": "./public/dist/component_compare_view.js",
+    "main": "public/dist/component_compare_view.js",
     "types": "public/dist/types/component/compare_view.d.ts",
     "files": [
         "public/dist"
