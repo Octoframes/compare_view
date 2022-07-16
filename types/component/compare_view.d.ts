@@ -7,5 +7,5 @@ export interface CompareViewProps {
     image_urls: string[];
     config?: ComponentConfig;
 }
-declare const CompareView: React.FC<CompareViewProps>;
-export default CompareView;
+export declare const CompareView: React.FC<CompareViewProps>;
+export {};
