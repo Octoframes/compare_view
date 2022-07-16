@@ -29,6 +29,7 @@ export function reload_checkboxes(cvd: CompareViewData): void {
     }
 }
 
+// to be called in onclick event
 export function get_mode_change_callback(cvd: CompareViewData, mode: Mode): (e: Event) => void {
     return (e: Event) => {
         // suppress unchecking
