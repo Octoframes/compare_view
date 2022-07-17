@@ -23,19 +23,20 @@ const CompareView: React.FC<CompareViewProps> = (props) => {
 
     // when rendered
     useEffect(() => {
-        let ctx = canvas_ref.current?.getContext("2d") as CanvasRenderingContext2D;
-        load_cvd(props.image_urls, ctx, props.config, (cvd) => {
-            // should create controls
-            if (props.config != undefined && props.config?.create_controls) {
-                let ctrl_data: ControlData = {
-                    circle_check: circle_ref.current!,
-                    horizontal_check: horizontal_ref.current!,
-                    vertical_check: vertical_ref.current!,
-                    revolve_imgs_button: revolve_ref.current!,
-                };
-                attach_control_data(cvd, ctrl_data);
-            }
-        });
+        console.log("test");
+        // let ctx = canvas_ref.current?.getContext("2d") as CanvasRenderingContext2D;
+        // load_cvd(props.image_urls, ctx, props.config, (cvd) => {
+        //     // should create controls
+        //     if (props.config != undefined && props.config?.create_controls) {
+        //         let ctrl_data: ControlData = {
+        //             circle_check: circle_ref.current!,
+        //             horizontal_check: horizontal_ref.current!,
+        //             vertical_check: vertical_ref.current!,
+        //             revolve_imgs_button: revolve_ref.current!,
+        //         };
+        //         attach_control_data(cvd, ctrl_data);
+        //     }
+        // });
     }, []);
 
     return (
