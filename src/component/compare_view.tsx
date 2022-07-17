@@ -8,12 +8,12 @@ interface ComponentConfig extends Config {
     create_controls?: boolean;
 };
 
-export interface CompareViewProps {
+interface CompareViewProps {
     image_urls: string[];
     config?: ComponentConfig;
 }
 
-export const CompareView: React.FC<CompareViewProps> = (props) => {
+const CompareView: React.FC<CompareViewProps> = (props) => {
     // used to access ctx after render
     let canvas_ref = React.createRef<HTMLCanvasElement>();
     let circle_ref = React.createRef<HTMLInputElement>();
@@ -66,4 +66,6 @@ export const CompareView: React.FC<CompareViewProps> = (props) => {
         </div>
     );
 }
+
+export default CompareView;
 
