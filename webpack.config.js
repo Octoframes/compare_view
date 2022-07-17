@@ -8,9 +8,26 @@ module.exports = (env) => {
         devtool: env["production"] ? false : "eval-source-map",
         // only entry file, include any imported files
         entry: {
-            browser_compare_view: "./src/browser/compare_view.ts",
-            component_compare_view: "./src/component/compare_view.tsx",
-            example_react_index: "./src/component/example/react_index.tsx",
+            // when directly importing from browser without bundler
+            browser_compare_view: {
+                import: "./src/browser/compare_view.ts",
+                // allow browser to access exposed functions
+                library: {
+                    name: "compare_view",
+                    type: "var",
+                },
+            },
+            // when using react components and bundler
+            component_compare_view: {
+                import: "./src/component/compare_view.tsx",
+                library: {
+                    name: "compare_view",
+                    type: "commonjs",
+                },
+            },
+            example_react_index: {
+                import: "./src/component/example/react_index.tsx",
+            },
         },
         module: {
             rules: [
@@ -33,11 +50,6 @@ module.exports = (env) => {
             filename: "[name].js",
             // need absolute outputpath
             path: path.resolve(__dirname, "public/dist"),
-            // allow browser to access exposed functions
-            library: {
-                name: "compare_view",
-                type: "var",
-            },
         },
         devServer: {
             static: {
