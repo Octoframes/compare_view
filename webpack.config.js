@@ -1,4 +1,5 @@
 const path = require("path");
+const { experiments } = require("webpack");
 
 module.exports = (env) => {
     return {
@@ -21,7 +22,8 @@ module.exports = (env) => {
             component_compare_view: {
                 import: "./src/component/compare_view.tsx",
                 library: {
-                    type: "commonjs-static",
+                    // type: "commonjs-static",
+                    type: "module",
                 },
             },
             example_react_index: {
@@ -62,6 +64,9 @@ module.exports = (env) => {
                 publicPath: "/dist",
             },
             hot: true,
+        },
+        experiments: {
+            outputModule: true,
         },
     };
 };
