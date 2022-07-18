@@ -21,7 +21,7 @@ module.exports = (env) => {
             component_compare_view: {
                 import: "./src/component/compare_view.tsx",
                 library: {
-                    type: "commonjs-static",
+                    type: "module",
                 },
             },
             // example_react_index: {
@@ -34,13 +34,15 @@ module.exports = (env) => {
                 "commonjs": "react",
                 "commonjs2": "react",
                 "amd": "react",
-                "root": "React"
+                "root": "React",
+                "module": "react",
             },
             "react-dom": {
                 "commonjs": "react-dom",
                 "commonjs2": "react-dom",
                 "amd": "react-dom",
-                "root": "ReactDOM"
+                "root": "ReactDOM",
+                "module": "react",
             }
         },
         module: {
@@ -64,10 +66,6 @@ module.exports = (env) => {
             filename: "[name].js",
             // need absolute outputpath
             path: path.resolve(__dirname, "public/dist"),
-            library: {
-                name: "compare_view",
-                type: "var",
-            },
         },
         devServer: {
             static: {
@@ -81,6 +79,9 @@ module.exports = (env) => {
                 publicPath: "/dist",
             },
             hot: true,
+        },
+        experiments: {
+            outputModule: true,
         },
     };
 };
