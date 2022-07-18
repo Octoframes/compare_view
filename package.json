@@ -12,9 +12,9 @@
     ],
     "scripts": {
         "develop": "webpack serve",
-        "build_deploy": "webpack --env=production",
+        "build_deploy": "webpack --env production && webpack --env production --env component",
         "build_release": "yarn run build_deploy",
-        "build_debug": "webpack --env=development"
+        "build_debug": "webpack --env development"
     },
     "devDependencies": {
         "@types/react": "^18.0.15",
