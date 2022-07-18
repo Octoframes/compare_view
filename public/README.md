@@ -256,6 +256,21 @@ yarn run build_deploy
 yarn run develop
 ```
 
+# React Component
+
+You're using React but still want to use compare_view?
+Then try out the official compare_view react component, see [this example repo](https://github.com/Octoframes/compare_view_react_example) for more info.
+You basically only have to `yarn add compare_view` and do this:
+```javascript
+import React from "react";
+import CompareView from "compare_view";
+
+const ReactApp: React.FC = () => 
+    <CompareView image_urls={["./cat.png", "./cat_grey.png"]} />;
+
+export default ReactApp;
+```
+
 # Development
 compare_view is still under development.
 If you encounter a bug or have an idea for a new feature, please do [open an Issue on GitHub](https://github.com/Octoframes/compare_view/issues) or write a mail to [mail@chris-besch.com](mailto:mail@chris-besch.com).
