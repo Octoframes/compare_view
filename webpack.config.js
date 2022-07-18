@@ -21,7 +21,8 @@ module.exports = (env) => {
             component_compare_view: {
                 import: "./src/component/compare_view.tsx",
                 library: {
-                    type: "module",
+                    // name: "compare_view",
+                    type: "commonjs",
                 },
             },
             // example_react_index: {
