@@ -1,3 +1,4 @@
+// export { default as ReactFromModule } from "react"
 import { Config } from "../cfg";
 import React, { useEffect } from "react";
 import { load_cvd } from "../load_cvd";

@@ -1,9 +1,9 @@
 {
     "name": "compare_view",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "Blend Between Muliple Images.",
-    "repository": "https://github.com/zeproc/compare_view",
-    "author": "christopher-besch <mail@chris-besch.com>",
+    "repository": "https://github.com/Octoframes/compare_view",
+    "author": "Octoframes",
     "license": "MIT",
     "main": "public/dist/component_compare_view.js",
     "types": "public/dist/types/component/compare_view.d.ts",
@@ -12,9 +12,9 @@
     ],
     "scripts": {
         "develop": "webpack serve",
-        "build_deploy": "webpack --env=production",
+        "build_deploy": "webpack --env production && webpack --env production --env component",
         "build_release": "yarn run build_deploy",
-        "build_debug": "webpack --env=development"
+        "build_debug": "webpack --env development"
     },
     "devDependencies": {
         "@types/react": "^18.0.15",
@@ -26,7 +26,6 @@
         "webpack-dev-server": "^4.9.2"
     },
     "dependencies": {
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react": "^18.2.0"
     }
 }
