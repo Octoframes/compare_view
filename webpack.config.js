@@ -21,30 +21,13 @@ module.exports = (env) => {
             component_compare_view: {
                 import: "./src/component/compare_view.tsx",
                 library: {
-                    // name: "compare_view",
-                    type: "commonjs",
+                    type: "module",
                 },
             },
-            // example_react_index: {
-            //     import: "./src/component/example/react_index.tsx",
-            // },
         },
         // react is already present in component using code
         externals: {
-            "react": {
-                "commonjs": "react",
-                "commonjs2": "react",
-                "amd": "react",
-                "root": "React",
-                "module": "react",
-            },
-            "react-dom": {
-                "commonjs": "react-dom",
-                "commonjs2": "react-dom",
-                "amd": "react-dom",
-                "root": "ReactDOM",
-                "module": "react",
-            }
+            "react": "react",
         },
         module: {
             rules: [
