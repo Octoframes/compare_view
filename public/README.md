@@ -118,7 +118,7 @@ There are five different ways of doing so:
 1.  Loading it from a **CDN** by importing `https://cdn.jsdelivr.net/npm/compare_view/public/dist/browser_compare_view.js` as done in the example above.
     This way is the easiest but doesn't come without privacy concerns, among other.
     If you want to use compare_view for a production deployment, consider using one of the options below.
-2.  Simply **download** the file from [here](https://github.com/Octoframes/compare_view/releases/latest) and put it in your static folder (if you don't know what that means, just put it next to you `index.html`).
+2.  Simply **download** the file from [here](https://github.com/Octoframes/compare_view/releases/latest) and put it in your static folder (if you don't know what that means, just put it next to your `index.html`).
     Now you can import it using the relative path to the `browser_compare_view.js` from your `index.html`.
 3.  **Cloning** [the compare_view repo](https://github.com/Octoframes/compare_view) (or adding it as a submodule) and checking out the `dist` branch, which contains a precompiled version of compare_view.
     You can directly import the file from there.
