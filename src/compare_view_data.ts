@@ -1,3 +1,5 @@
+import { Config } from "./cfg";
+
 export enum Mode {
     undefined = "undefined",
     horizontal = "horizontal",
@@ -9,6 +11,7 @@ export enum Task {
     // don't do anything, just render once
     none,
     revolve_imgs,
+    update_imgs,
     // switch current_mode to next_mode
     change_mode,
     // update circle position and start rendering
@@ -38,9 +41,15 @@ export interface ControlData {
 
 export interface CompareViewData {
     // general //
+    cfg: Config;
+
     images: Image[];
     // number of images doesn't change
     images_len: number;
+
+    // when updating images
+    new_images: Image[];
+    new_image_resolution: [number, number];
 
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;

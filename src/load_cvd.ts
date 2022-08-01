@@ -15,8 +15,13 @@ export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, cf
     load_images(image_urls, (images, img_resolution) => {
         // used to e.g. scale circle correctly 
         let cvd: CompareViewData = {
+            cfg: cfg,
+
             images: images,
             images_len: images.length,
+
+            new_images: [],
+            new_image_resolution: [0, 0],
 
             canvas: ctx.canvas,
             ctx: ctx,
@@ -58,7 +63,7 @@ export function load_cvd(image_urls: string[], ctx: CanvasRenderingContext2D, cf
             start_pos: 0,
             target_pos: 0,
         };
-        load_canvas_scaling(cvd, img_resolution, cfg);
+        load_canvas_scaling(cvd, img_resolution);
 
         // e.g. let caller attach controls
         if (prerun_callback != undefined)

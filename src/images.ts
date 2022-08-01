@@ -1,4 +1,6 @@
-import { CompareViewData, Image } from "./compare_view_data";
+import { CompareViewData, Image, Task } from "./compare_view_data";
+import { load_canvas_scaling } from "./scaling";
+import { push_task } from "./task_solver";
 
 function get_img_resolution(images: Image[]): [number, number] {
     let width = images[0]?.element.width as number;
@@ -42,5 +44,21 @@ export function load_images(image_urls: string[], callback: (images: Image[], im
 export function revolve_imgs(cvd: CompareViewData): boolean {
     cvd.images.unshift(cvd.images.pop() as Image);
     return true;
+}
+
+export function update_images(cvd: CompareViewData): boolean {
+    cvd.images = cvd.new_images;
+    load_canvas_scaling(cvd, cvd.new_image_resolution);
+    return true;
+}
+
+// TODO: accept HTMLImageElement
+export function load_new_imgs(cvd: CompareViewData, image_urls: string[]): void {
+    load_images(image_urls, (images, img_resolution) => {
+        cvd.new_images = images;
+        cvd.images_len = images.length;
+        cvd.new_image_resolution = img_resolution;
+        push_task(cvd, Task.update_imgs);
+    });
 }
 

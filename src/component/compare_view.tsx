@@ -1,9 +1,9 @@
-// export { default as ReactFromModule } from "react"
 import { Config } from "../cfg";
 import React, { useEffect } from "react";
 import { load_cvd } from "../load_cvd";
 import { attach_control_data } from "../controls";
-import { ControlData } from "../compare_view_data";
+import { CompareViewData, ControlData } from "../compare_view_data";
+import { load_new_imgs } from "../images";
 
 interface ComponentConfig extends Config {
     create_controls?: boolean;
@@ -12,6 +12,7 @@ interface ComponentConfig extends Config {
 interface CompareViewProps {
     image_urls: string[];
     config?: ComponentConfig;
+    callback?: (cvd: CompareViewData) => void;
 }
 
 const CompareView: React.FC<CompareViewProps> = (props) => {
@@ -36,6 +37,8 @@ const CompareView: React.FC<CompareViewProps> = (props) => {
                 };
                 attach_control_data(cvd, ctrl_data);
             }
+            if (props.callback != undefined)
+                props.callback(cvd);
         });
     }, []);
 
@@ -70,3 +73,4 @@ const CompareView: React.FC<CompareViewProps> = (props) => {
 
 export default CompareView;
 
+export { load_new_imgs };
