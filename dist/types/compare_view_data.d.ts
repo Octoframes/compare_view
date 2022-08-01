@@ -1,3 +1,4 @@
+import { Config } from "./cfg";
 export declare enum Mode {
     undefined = "undefined",
     horizontal = "horizontal",
@@ -7,12 +8,13 @@ export declare enum Mode {
 export declare enum Task {
     none = 0,
     revolve_imgs = 1,
-    change_mode = 2,
-    update_circle = 3,
-    remove_circle = 4,
-    start_slider_move = 5,
-    possible_instant_slide = 6,
-    update_slider = 7
+    update_imgs = 2,
+    change_mode = 3,
+    update_circle = 4,
+    remove_circle = 5,
+    start_slider_move = 6,
+    possible_instant_slide = 7,
+    update_slider = 8
 }
 export interface Image {
     url: string;
@@ -26,8 +28,11 @@ export interface ControlData {
     revolve_imgs_button: HTMLButtonElement;
 }
 export interface CompareViewData {
+    cfg: Config;
     images: Image[];
     images_len: number;
+    new_images: Image[];
+    new_image_resolution: [number, number];
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;
     width: number;
