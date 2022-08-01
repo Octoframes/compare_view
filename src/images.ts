@@ -56,6 +56,7 @@ export function update_images(cvd: CompareViewData): boolean {
 export function load_new_imgs(cvd: CompareViewData, image_urls: string[]): void {
     load_images(image_urls, (images, img_resolution) => {
         cvd.new_images = images;
+        cvd.images_len = images.length;
         cvd.new_image_resolution = img_resolution;
         push_task(cvd, Task.update_imgs);
     });
