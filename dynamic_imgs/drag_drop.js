@@ -45,18 +45,18 @@ function load_new_url(target, url, image_urls, on_new_imgs, image_id) {
     target.appendChild(img);
 }
 
-function handle_drop(image_urls, e, on_new_imgs, image_id) {
+function handle_drop(image_urls, e, on_new_imgs, image_id, image) {
     let data = e.dataTransfer;
     let files = data.files;
     // drag+drop from user file system
     if (files.length)
         load_from_disk(files, (url) => {
-            load_new_url(e.target, url, image_urls, on_new_imgs, image_id);
+            load_new_url(image, url, image_urls, on_new_imgs, image_id);
         });
     // drag+drop from HTMLImageElement (or invalid drop (e.g. text))
     else {
         let url = load_from_img_element(data);
-        load_new_url(e.target, url, image_urls, on_new_imgs, image_id);
+        load_new_url(image, url, image_urls, on_new_imgs, image_id);
     }
 }
 
@@ -88,7 +88,7 @@ function load_img_drop(image_urls, on_new_imgs) {
         images[i].addEventListener("drop", prevent_default, false);
 
         images[i].addEventListener("drop", (e) => {
-            handle_drop(image_urls, e, on_new_imgs, i);
+            handle_drop(image_urls, e, on_new_imgs, i, images[i]);
         });
 
         enable_style_change(images[i]);
