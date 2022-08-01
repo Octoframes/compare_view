@@ -48,8 +48,6 @@ export function revolve_imgs(cvd: CompareViewData): boolean {
 
 export function update_images(cvd: CompareViewData): boolean {
     cvd.images = cvd.new_images;
-    cvd.width = cvd.new_image_resolution[0];
-    cvd.height = cvd.new_image_resolution[1];
     load_canvas_scaling(cvd, cvd.new_image_resolution);
     return true;
 }
