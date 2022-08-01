@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>compare_view Dynamic Images</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="" />
+</head>
+
+<body>
+    <script src="../dist/browser_compare_view.js"></script>
+
+    <div style="display: flex; flex-direction: row; width: 100%;">
+        <div>
+            <canvas id="canvas" style="width: 100%;"></canvas>
+        </div>
+        <div id="controls" style="width: 120px;">
+        </div>
+    </div>
+    <script>
+        compare_view.load(
+            [
+                "../images/cat.png",
+                "../images/cat_grey.png",
+                // "../images/cat_red.png",
+                // "../images/cat_blue.png",
+                // "../images/cat_green.png",
+            ],
+            "canvas",
+            {
+                controls_id: "controls",
+                // circle_size: 20,
+                // circle_fraction: 0.4,
+                // circumference_fraction: 0.1,
+            },
+            (cvd) => {
+                console.log("load callback");
+                window.setTimeout(() => {
+                    console.log("update");
+                    compare_view.load_new_imgs(
+                        cvd,
+                        [
+                            "../images/cat_red.png",
+                            "../images/cat_blue.png",
+                        ]
+                    );
+                }, 3000);
+            }
+        );
+    </script>
+</body>
+
+</html>

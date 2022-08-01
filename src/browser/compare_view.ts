@@ -4,6 +4,8 @@ import { load_cvd } from "../load_cvd";
 import { attach_control_data } from "../controls";
 import { load_ctx } from "./canvas";
 import { create_controls } from "./create_controls";
+import { CompareViewData } from "../compare_view_data";
+import { load_new_imgs } from "../images";
 
 export interface BrowserConfig extends Config {
     // leave undefined to not create controls
@@ -12,7 +14,12 @@ export interface BrowserConfig extends Config {
     key?: string;
 }
 
-export function load(image_urls: string[], canvas_id: string, config: BrowserConfig = {}) {
+export function load(
+    image_urls: string[],
+    canvas_id: string,
+    config: BrowserConfig = {},
+    callback: (cvd: CompareViewData) => void = () => { }
+): void {
     // create controls before image loading
     let ctrl_data = config.controls_id != undefined ? create_controls(config.controls_id, config.key) : undefined;
     load_cvd(
@@ -22,7 +29,10 @@ export function load(image_urls: string[], canvas_id: string, config: BrowserCon
         (cvd) => {
             if (ctrl_data != undefined)
                 attach_control_data(cvd, ctrl_data);
+            callback(cvd);
         },
     )
 }
+
+export { load_new_imgs };
 

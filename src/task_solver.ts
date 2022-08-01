@@ -1,5 +1,5 @@
 import { Mode, CompareViewData, Task } from "./compare_view_data";
-import { revolve_imgs } from "./images";
+import { revolve_imgs, update_images } from "./images";
 import { change_mode } from "./modes/change_mode";
 import { remove_circle, update_circle, render_circle } from "./modes/circle_mode";
 import { instant_slide, render_slider, start_slider_move, update_slider } from "./modes/slider_mode";
@@ -21,6 +21,9 @@ function solve_tasks(cvd: CompareViewData, timestamp: number): void {
                 break;
             case Task.revolve_imgs:
                 handled = revolve_imgs(cvd);
+                break;
+            case Task.update_imgs:
+                handled = update_images(cvd);
                 break;
             case Task.update_circle:
                 handled = update_circle(cvd);
