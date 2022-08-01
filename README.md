@@ -26,9 +26,9 @@
 
 You can use compare_view on your website to compare two or more images.
 If you haven't noticed yet, the image above is actually a compare_view instance—click it and you'll see what that means.
-You can play around with it [here](https://jsfiddle.net/7t58914w) to add your own images—this is the source code:
+You can play around with it [here](https://jsfiddle.net/z8ycvtop) to add your own images—this is the source code:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/compare_view/public/dist/browser_compare_view.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/compare_view@1.3.0/public/dist/browser_compare_view.js"></script>
 
 <canvas id="canvas_id" style="width: 100%"></canvas>
 <script>
