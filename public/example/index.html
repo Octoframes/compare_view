@@ -122,6 +122,30 @@
         );
     </script>
 
+    <canvas id="dynamic_img_canvas"></canvas>
+    <button id="change_img_button">Wanna see a green cat?</button>
+    <script>
+        compare_view.load(
+            [
+                "../images/cat.png",
+                "../images/cat_grey.png",
+            ],
+            "dynamic_img_canvas",
+            {},
+            (cvd) => {
+                // load new images when button is pressed
+                let button = document.getElementById("change_img_button");
+                button.addEventListener("click", () => {
+                    compare_view.load_new_imgs(cvd,
+                        [
+                            "../images/cat.png",
+                            "../images/cat_green.png",
+                        ])
+                });
+            },
+        );
+    </script>
+
 </body>
 
 </html>
