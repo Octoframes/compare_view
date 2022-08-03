@@ -10,13 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: run_action
     steps:
-      - name: Test
-        run: echo ${{ secrets.TEST }}
-      # - name: Dispatch component_view_react_example Action
-      #   uses: mvasigh/dispatch-action@main
-      #   with:
-      #     token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-      #     repo: component_view_react_example
-      #     owner: Octoframes
-      #     event_type: compare_view_update
+      - name: Dispatch component_view_react_example Action
+        uses: mvasigh/dispatch-action@main
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repo: component_view_react_example
+          owner: Octoframes
+          event_type: compare_view_update
 
