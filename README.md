@@ -239,6 +239,66 @@ It defines the radius in pixel.
 If `show_slider` is set to `false`, the black line indicating the slider won't be rendered.
 This also applies to `show_circle`.
 
+## Callback and Update Images
+The `compare_view.load` function accepts a callback that receives a `CompareViewData` object.
+This object is used internally to store the entire stare of this compare_view instance.
+It is needed to control the instance from JavaScript.
+At the moment there's only the `load_new_imgs` function.
+Its first parameter is the `CompareViewData` object and the second one is a new array of image URLs that shall be loaded.
+
+Here's an example:
+```html
+<canvas id="dynamic_img_canvas"></canvas>
+<button id="change_img_button">Wanna see a green cat?</button>
+<script>
+    compare_view.load(
+        [
+            "./images/cat.png",
+            "./images/cat_grey.png",
+        ],
+        "dynamic_img_canvas",
+        {},
+        (cvd) => {
+            // load new images when button is pressed
+            let button =  document.getElementById("change_img_button");
+            button.addEventListener("click", () => {
+                load_new_imgs(cvd, 
+                [
+                    "./images/cat.png",
+                    "./images/cat_green.png",
+                ])
+            });
+        },
+    );
+</script>
+```
+
+<canvas id="dynamic_img_canvas"></canvas>
+<button id="change_img_button">Wanna see a green cat?</button>
+<script>
+    compare_view.load(
+        [
+            "./images/cat.png",
+            "./images/cat_grey.png",
+        ],
+        "dynamic_img_canvas",
+        {},
+        (cvd) => {
+            // load new images when button is pressed
+            let button =  document.getElementById("change_img_button");
+            button.addEventListener("click", () => {
+                load_new_imgs(cvd, 
+                [
+                    "./images/cat.png",
+                    "./images/cat_green.png",
+                ])
+            });
+        },
+    );
+</script>
+
+This feature is used to enable something like this: [drag and drop images into compare_view](https://octoframes.github.io/compare_view/dynamic_imgs)
+
 # Compile It Yourself
 Once you've cloned [the compare_view repo](https://github.com/Octoframes/compare_view) you have to install all required dependencies:
 ```
