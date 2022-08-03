@@ -12,4 +12,4 @@ interface CompareViewProps {
 }
 declare const CompareView: React.FC<CompareViewProps>;
 export default CompareView;
-export { load_new_imgs };
+export { load_new_imgs, CompareViewData };
