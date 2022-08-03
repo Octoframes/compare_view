@@ -1,11 +1,11 @@
-.imgs_wrapper {
+.drag_targets {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
 }
 
-.img {
+.drag_target {
     width: 200px;
     height: 200px;
     display: flex;
@@ -23,5 +23,6 @@
 }
 
 .image_preview {
-    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
 }

@@ -11,22 +11,26 @@
 
 <body>
     <script src="../dist/browser_compare_view.js"></script>
-    <script src="./drag_drop.js"></script>
+    <script src="../dist/drag_drop.js"></script>
 
+    <h1>This is a showcase of how dynamic compare_view can be. It isn't intended to look particularly pretty.</h1>
+    <!-- some images to be dragged and dropped -->
     <img src="../images/banner_colour.png" width=500 />
     <img src="../images/banner_grey.png" width=500 />
+    <img src="../images/cat.png" width=500 />
+    <img src="../images/cat_grey.png" width=500 />
 
-    <div class="imgs_wrapper">
-        <div class="img">
+    <div class="drag_targets">
+        <div class="drag_target">
             <div>Drag&amp;Drop Image Here</div>
         </div>
-        <div class="img">
+        <div class="drag_target">
             <div>Drag&amp;Drop Image Here</div>
         </div>
-        <div class="img">
+        <div class="drag_target">
             <div>Drag&amp;Drop Image Here</div>
         </div>
-        <div class="img">
+        <div class="drag_target">
             <div>Drag&amp;Drop Image Here</div>
         </div>
     </div>
@@ -42,25 +46,21 @@
         compare_view.load(
             [
                 "../images/cat.png",
-                "../images/cat_grey.png",
+                "../images/cat.png",
             ],
             "canvas",
             {
                 controls_id: "controls",
             },
             (cvd) => {
-                load_img_drop([
+                drag_drop.load(
+                    "drag_target",
                     "../images/cat.png",
-                    "../images/cat_grey.png",
-                    undefined,
-                    undefined,
-                    undefined,
-                ], (image_urls) => {
-                    // TODO: remove debug
-                    console.log(image_urls);
-                    compare_view.load_new_imgs(cvd, image_urls);
-                });
-            }
+                    (image_urls) => {
+                        compare_view.load_new_imgs(cvd, image_urls);
+                    },
+                );
+            },
         );
     </script>
 </body>
