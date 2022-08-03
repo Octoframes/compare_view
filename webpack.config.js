@@ -25,6 +25,14 @@ module.exports = (env) => {
                     type: "var",
                 },
             },
+            drag_drop: {
+                import: "./src/drag_drop/drag_drop.ts",
+                // allow browser to access exposed functions
+                library: {
+                    name: "drag_drop",
+                    type: "var",
+                },
+            },
         }
     return {
         // can be development or production
