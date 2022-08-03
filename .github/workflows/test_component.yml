@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: run_action
     steps:
       - name: Test
         run: echo ${{ secrets.TEST }}
