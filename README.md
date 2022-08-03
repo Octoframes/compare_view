@@ -253,8 +253,8 @@ Here's an example:
 <script>
     compare_view.load(
         [
-            "./images/cat.png",
             "./images/cat_grey.png",
+            "./images/cat.png",
         ],
         "dynamic_img_canvas",
         {},
@@ -264,8 +264,8 @@ Here's an example:
             button.addEventListener("click", () => {
                 compare_view.load_new_imgs(cvd, 
                 [
-                    "./images/cat.png",
                     "./images/cat_green.png",
+                    "./images/cat.png",
                 ]);
             });
         });
@@ -279,8 +279,8 @@ Here's an example:
 <script>
     compare_view.load(
         [
-            "./images/cat.png",
             "./images/cat_grey.png",
+            "./images/cat.png",
         ],
         "dynamic_img_canvas",
         {},
@@ -290,8 +290,8 @@ Here's an example:
             button.addEventListener("click", () => {
                 compare_view.load_new_imgs(cvd, 
                 [
-                    "./images/cat.png",
                     "./images/cat_green.png",
+                    "./images/cat.png",
                 ]);
             });
         });
