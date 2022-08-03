@@ -270,6 +270,7 @@ const ReactApp: React.FC = () =>
 
 export default ReactApp;
 ```
+See [the source file](https://github.com/Octoframes/compare_view_react_example/blob/main/src/app.tsx).
 
 # Development
 compare_view is still under development.
