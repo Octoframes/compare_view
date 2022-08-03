@@ -14,7 +14,7 @@ jobs:
         uses: mvasigh/dispatch-action@main
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repo: component_view_react_example
+          repo: compare_view_react_example
           owner: Octoframes
           event_type: compare_view_update
 
