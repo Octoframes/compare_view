@@ -1,0 +1,19 @@
+name: Test Component API
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch component_view_react_example
+        uses: mvasigh/dispatch-action@main
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          repo: component_view_react_example
+          owner: christopher-besch
+          event_type: compare_view_update
+

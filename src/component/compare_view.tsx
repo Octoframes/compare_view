@@ -73,4 +73,5 @@ const CompareView: React.FC<CompareViewProps> = (props) => {
 
 export default CompareView;
 
-export { load_new_imgs };
+export { load_new_imgs, CompareViewData };
+
