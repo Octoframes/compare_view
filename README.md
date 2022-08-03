@@ -262,19 +262,20 @@ Here's an example:
             // load new images when button is pressed
             let button =  document.getElementById("change_img_button");
             button.addEventListener("click", () => {
-                load_new_imgs(cvd, 
+                compare_view.load_new_imgs(cvd, 
                 [
                     "./images/cat.png",
                     "./images/cat_green.png",
-                ])
+                ]);
             });
-        },
-    );
+        });
 </script>
 ```
 
-<canvas id="dynamic_img_canvas"></canvas>
-<button id="change_img_button">Wanna see a green cat?</button>
+<div class="cv_container">
+    <div><canvas id="dynamic_img_canvas"></canvas></div>
+    <div class="cv_controls"><button id="change_img_button">Wanna see a green cat?</button></div>
+</div>
 <script>
     compare_view.load(
         [
@@ -287,14 +288,13 @@ Here's an example:
             // load new images when button is pressed
             let button =  document.getElementById("change_img_button");
             button.addEventListener("click", () => {
-                load_new_imgs(cvd, 
+                compare_view.load_new_imgs(cvd, 
                 [
                     "./images/cat.png",
                     "./images/cat_green.png",
-                ])
+                ]);
             });
-        },
-    );
+        });
 </script>
 
 This feature is used to enable something like this: [drag and drop images into compare_view](https://octoframes.github.io/compare_view/dynamic_imgs)
